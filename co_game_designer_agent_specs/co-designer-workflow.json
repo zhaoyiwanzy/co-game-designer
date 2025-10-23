@@ -1,0 +1,312 @@
+{
+  "name": "co-designer",
+  "nodes": [
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Joker Synergy Specialist Agent Output\",\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"properties\": {\n    \"globalObservations\": {\n      \"default\": [],\n      \"description\": \"High-level notes about the joker concept and metagame context.\",\n      \"examples\": [\n        \"Discard-focused decks lack payoff unless paired with piston jokers.\"\n      ],\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"type\": \"array\"\n    },\n    \"risks\": {\n      \"default\": [],\n      \"description\": \"Potential pitfalls or incompatibilities discovered during the analysis.\",\n      \"items\": {\n        \"additionalProperties\": false,\n        \"properties\": {\n          \"description\": {\n            \"description\": \"What could go wrong if the package is adopted.\",\n            \"examples\": [\n              \"Stacking with Madness joker doubles the multiplier curve.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"mitigation\": {\n            \"description\": \"Suggested guardrail or monitoring plan.\",\n            \"examples\": [\n              \"Cap base chips at 40 when paired with Madness.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"riskId\": {\n            \"description\": \"Identifier for cross-agent traceability.\",\n            \"examples\": [\n              \"risk-madness-overlap\"\n            ],\n            \"type\": \"string\"\n          },\n          \"severity\": {\n            \"description\": \"Relative severity label.\",\n            \"enum\": [\n              \"low\",\n              \"medium\",\n              \"high\"\n            ],\n            \"examples\": [\n              \"high\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"description\",\n          \"mitigation\",\n          \"riskId\",\n          \"severity\"\n        ],\n        \"type\": \"object\"\n      },\n      \"type\": \"array\"\n    },\n    \"summary\": {\n      \"description\": \"One-paragraph synthesis of the joker synergy landscape.\",\n      \"examples\": [\n        \"Discard engines gain the most, provided economy levers offset the multiplier spike.\"\n      ],\n      \"type\": \"string\"\n    },\n    \"supportingResearch\": {\n      \"default\": [],\n      \"description\": \"Pointers to experiments, spreadsheets, or references used in the analysis.\",\n      \"items\": {\n        \"additionalProperties\": false,\n        \"properties\": {\n          \"description\": {\n            \"description\": \"Why the source matters for this recommendation.\",\n            \"examples\": [\n              \"Win-rate logs from week 34 patch.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"link\": {\n            \"description\": \"Optional URL or file path if accessible.\",\n            \"examples\": [\n              \"experiments/synergy_runs/week34.md\"\n            ],\n            \"type\": \"string\"\n          },\n          \"sourceId\": {\n            \"description\": \"Unique identifier for the research artifact.\",\n            \"examples\": [\n              \"exp-34-discard-logs\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"description\",\n          \"sourceId\"\n        ],\n        \"type\": \"object\"\n      },\n      \"type\": \"array\"\n    },\n    \"synergyPackages\": {\n      \"default\": [],\n      \"description\": \"Ranked synergy packages with quantitative expectations.\",\n      \"items\": {\n        \"additionalProperties\": false,\n        \"properties\": {\n          \"description\": {\n            \"description\": \"How the synergy behaves and what gameplay it unlocks.\",\n            \"examples\": [\n              \"Chain discards with Flush House to convert draw cycles into chip bursts.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"enablingCards\": {\n            \"default\": [],\n            \"description\": \"Cards, jokers, or consumables required to realize the package.\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"type\": \"array\"\n          },\n          \"expectedChips\": {\n            \"description\": \"Expected chip gain by ante 6 under optimal play.\",\n            \"examples\": [\n              280\n            ],\n            \"minimum\": 0,\n            \"type\": \"number\"\n          },\n          \"expectedMultiplier\": {\n            \"description\": \"Expected multiplier value by ante 6.\",\n            \"examples\": [\n              18\n            ],\n            \"minimum\": 0,\n            \"type\": \"number\"\n          },\n          \"name\": {\n            \"description\": \"Short name for the synergy package.\",\n            \"examples\": [\n              \"Discard Dynamo\"\n            ],\n            \"type\": \"string\"\n          },\n          \"packageId\": {\n            \"description\": \"Stable identifier used by the orchestrator when referencing this package.\",\n            \"examples\": [\n              \"SP-02\"\n            ],\n            \"type\": \"string\"\n          },\n          \"rarityFit\": {\n            \"description\": \"Best-fit joker rarity for balance.\",\n            \"enum\": [\n              \"common\",\n              \"uncommon\",\n              \"rare\",\n              \"legendary\"\n            ],\n            \"examples\": [\n              \"rare\"\n            ],\n            \"type\": \"string\"\n          },\n          \"setupSequence\": {\n            \"default\": [],\n            \"description\": \"Ordered steps or milestones to assemble the synergy.\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"type\": \"array\"\n          },\n          \"tuningNotes\": {\n            \"description\": \"Suggestions to tweak numbers or effects for this package.\",\n            \"examples\": [\n              \"Limit joker activation to once per round.\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"description\",\n          \"enablingCards\",\n          \"expectedChips\",\n          \"expectedMultiplier\",\n          \"name\",\n          \"packageId\",\n          \"rarityFit\",\n          \"setupSequence\",\n          \"tuningNotes\"\n        ],\n        \"type\": \"object\"\n      },\n      \"type\": \"array\"\n    }\n  },\n  \"required\": [\n    \"globalObservations\",\n    \"risks\",\n    \"summary\",\n    \"supportingResearch\",\n    \"synergyPackages\"\n  ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1264,
+        288
+      ],
+      "id": "130d80a6-e20f-4193-830e-fd18b59ce361",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {
+          "maxTokens": -1,
+          "reasoningEffort": "medium",
+          "timeout": 300000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        288
+      ],
+      "id": "5f405807-43b1-4972-b146-8c090429ba62",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "1lkBcOr7FVmY5bn6",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Ranks Balatro joker synergies, quantifies outputs, and surfaces interaction risks.",
+        "text": "=You evaluate Balatro joker concepts for synergy potential.\nRead the orchestrator brief, honoring banned components and desired archetypes.\nRank synergy packages with packageId, name, description, rarity fit, enabling cards, setup sequence, and tuning notes.\nProvide expected chip and multiplier values by ante 6 and highlight fragile interactions.\nList global observations, high-severity risks with mitigations, and any supporting research references.\nReturn a single JSON object. Do not include commentary or code fences.\n\n\n\nUser request:\n\n{{ $fromAI('Prompt__User_Message_', ``, 'string') }}\n\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        80
+      ],
+      "id": "9dd797f0-5b75-413c-8ffc-585647d8484f",
+      "name": "joker_synergy_specialist_agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {
+          "timeout": 300000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1408,
+        288
+      ],
+      "id": "5f10557c-7b6a-4acd-903f-f313889ce318",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "1lkBcOr7FVmY5bn6",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Simulates Balatro run scenarios to stress-test balance and recommend mitigations.",
+        "text": "=You simulate Balatro runs to test proposed jokers and deck adjustments.\nUse the orchestrator dossier and synergy report to set up baseline, synergy heavy, and busted scenarios.\nCapture ante progression notes, chip and multiplier trajectories, economy summary, and probability estimates.\nFlag risks per scenario and recommend mitigations when thresholds are exceeded.\nDocument assumptions, RNG seeds, and tools used so the harness can replay the runs.\nReturn a single JSON object that matches run_balance_simulator_agent.json. Do not include commentary or code fences.\n\nUser request:\n{{ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        1408,
+        80
+      ],
+      "id": "915ee530-7ca0-4e9f-a901-6b2c1bdfadae",
+      "name": "run_balance_simulator_agent"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Run Balance Simulator Agent Output\",\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"properties\": {\n    \"balanceVerdict\": {\n      \"description\": \"Overall statement about balance health across simulated runs.\",\n      \"examples\": [\n        \"Playable with mitigation; busted seeds exceed multiplier targets by ante 7.\"\n      ],\n      \"type\": \"string\"\n    },\n    \"mitigationIdeas\": {\n      \"default\": [],\n      \"description\": \"Recommended levers or follow-up actions based on simulation findings.\",\n      \"examples\": [\n        \"Add escalating shop cost after first purchase\"\n      ],\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"type\": \"array\"\n    },\n    \"scenarioReports\": {\n      \"default\": [],\n      \"description\": \"Per-scenario metrics and risk summaries.\",\n      \"items\": {\n        \"additionalProperties\": false,\n        \"properties\": {\n          \"anteProgression\": {\n            \"default\": [],\n            \"description\": \"Key milestones or breakpoints observed by ante.\",\n            \"examples\": [\n              [\n                {\n                  \"ante\": 2,\n                  \"note\": \"Economy stable\"\n                },\n                {\n                  \"ante\": 5,\n                  \"note\": \"Chip spike begins\"\n                }\n              ]\n            ],\n            \"items\": {\n              \"additionalProperties\": false,\n              \"properties\": {\n                \"ante\": {\n                  \"description\": \"Ante number for the observation.\",\n                  \"examples\": [\n                    5\n                  ],\n                  \"minimum\": 1,\n                  \"type\": \"integer\"\n                },\n                \"note\": {\n                  \"description\": \"What happens at this ante milestone.\",\n                  \"examples\": [\n                    \"Player reliably clears blinds with 2 hands.\"\n                  ],\n                  \"type\": \"string\"\n                }\n              },\n              \"required\": [\n                \"ante\",\n                \"note\"\n              ],\n              \"type\": \"object\"\n            },\n            \"type\": \"array\"\n          },\n          \"chipTrajectory\": {\n            \"default\": [],\n            \"description\": \"Estimated chip outputs per ante for the scenario.\",\n            \"examples\": [\n              [\n                {\n                  \"ante\": 3,\n                  \"chips\": 120\n                },\n                {\n                  \"ante\": 6,\n                  \"chips\": 320\n                }\n              ]\n            ],\n            \"items\": {\n              \"additionalProperties\": false,\n              \"properties\": {\n                \"ante\": {\n                  \"description\": \"Ante at which the chip estimate applies.\",\n                  \"examples\": [\n                    6\n                  ],\n                  \"minimum\": 1,\n                  \"type\": \"integer\"\n                },\n                \"chips\": {\n                  \"description\": \"Estimated chip output for a typical winning hand.\",\n                  \"examples\": [\n                    280\n                  ],\n                  \"minimum\": 0,\n                  \"type\": \"number\"\n                }\n              },\n              \"required\": [\n                \"ante\",\n                \"chips\"\n              ],\n              \"type\": \"object\"\n            },\n            \"type\": \"array\"\n          },\n          \"economySummary\": {\n            \"description\": \"Overview of money flow, shop purchases, and scarcity pressures.\",\n            \"examples\": [\n              \"Baseline survives with 12$ buffer; busted run prints infinite cash via coupon loop.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"multiplierTrajectory\": {\n            \"default\": [],\n            \"description\": \"Estimated multiplier values per ante.\",\n            \"examples\": [\n              [\n                {\n                  \"ante\": 4,\n                  \"multiplier\": 9\n                },\n                {\n                  \"ante\": 7,\n                  \"multiplier\": 22\n                }\n              ]\n            ],\n            \"items\": {\n              \"additionalProperties\": false,\n              \"properties\": {\n                \"ante\": {\n                  \"description\": \"Ante at which the multiplier applies.\",\n                  \"examples\": [\n                    7\n                  ],\n                  \"minimum\": 1,\n                  \"type\": \"integer\"\n                },\n                \"multiplier\": {\n                  \"description\": \"Estimated multiplier for the scenario.\",\n                  \"examples\": [\n                    18\n                  ],\n                  \"minimum\": 0,\n                  \"type\": \"number\"\n                }\n              },\n              \"required\": [\n                \"ante\",\n                \"multiplier\"\n              ],\n              \"type\": \"object\"\n            },\n            \"type\": \"array\"\n          },\n          \"probabilityEstimate\": {\n            \"description\": \"Rough likelihood of assembling the scenario conditions.\",\n            \"examples\": [\n              \"moderate\"\n            ],\n            \"enum\": [\n              \"low\",\n              \"moderate\",\n              \"high\"\n            ],\n            \"type\": \"string\"\n          },\n          \"riskNotes\": {\n            \"default\": [],\n            \"description\": \"Risks or anomalies observed in the scenario.\",\n            \"examples\": [\n              [\n                \"Multiplier snowballs if Madness also present\"\n              ]\n            ],\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"type\": \"array\"\n          },\n          \"scenarioName\": {\n            \"description\": \"Descriptor for the simulated scenario.\",\n            \"examples\": [\n              \"Baseline discard deck\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"anteProgression\",\n          \"chipTrajectory\",\n          \"economySummary\",\n          \"multiplierTrajectory\",\n          \"probabilityEstimate\",\n          \"riskNotes\",\n          \"scenarioName\"\n        ],\n        \"type\": \"object\"\n      },\n      \"type\": \"array\"\n    },\n    \"simulationMetadata\": {\n      \"description\": \"Assumptions, tool versions, and data sources underpinning the simulation.\",\n      \"examples\": [\n        {\n          \"assumptions\": [\n            \"Player uses optimal discard lines\",\n            \"Shop offers average rarity distribution\"\n          ],\n          \"rngSeeds\": [\n            \"baseline-seed-103\",\n            \"synergy-seed-227\",\n            \"busted-seed-404\"\n          ],\n          \"tools\": [\n            \"BALATRO_RUN_SIM v1.2\"\n          ]\n        }\n      ],\n      \"properties\": {\n        \"assumptions\": {\n          \"default\": [],\n          \"description\": \"Key assumptions that affect interpretation of the results.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        },\n        \"rngSeeds\": {\n          \"default\": [],\n          \"description\": \"Named seeds or RNG notes for reproducibility.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        },\n        \"tools\": {\n          \"default\": [],\n          \"description\": \"Simulation tools or scripts used to produce the report.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        }\n      },\n      \"required\": [\n        \"assumptions\",\n        \"rngSeeds\",\n        \"tools\"\n      ],\n      \"type\": \"object\"\n    },\n    \"summary\": {\n      \"description\": \"Concise narration of what the simulations revealed.\",\n      \"examples\": [\n        \"Synergy-heavy runs demand higher rarity gate; busted loops require cost scaling.\"\n      ],\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"balanceVerdict\",\n    \"mitigationIdeas\",\n    \"scenarioReports\",\n    \"simulationMetadata\",\n    \"summary\"\n  ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1552,
+        288
+      ],
+      "id": "b83fb8d1-5c98-49e8-b761-30abc2a9e229",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Design request:\n\n{{ $json.chatInput}}\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are the lead designer orchestrator for Balatro card development.\nInterpret the design motivation (which may be minimal or empty) and restate the player fantasy, core goal, constraints, and success metrics.\nDelegate synergy exploration to joker_synergy_specialist_agent and balance simulation to run_balance_simulator_agent.\nMap synergy decisions back to packageId values supplied by joker_synergy_specialist_agent.\nEmbed the exact instructions you send to each delegate and log how you apply their outputs.\nResolve conflicting advice, documenting trade offs and selected mitigations.\nDefine a complete jokerSpec covering name, rarity, base chips, base multiplier, effect text, price, tags, and justification tied to delegate evidence.\nAssemble the final design dossier with synergy decisions, balance plan, validation hooks, and outstanding risks.\nReturn a single JSON object. Do not include commentary or code fences.\n\n---------------------------------------------------\n\n# Balatro Game Knowledge\n\n## Balatro Game Mechanics and Rules\n\nThis document summarizes the core gameplay mechanics, scoring system, and card interactions for **Balatro**.  \nUse these rules to ensure that generated joker designs remain consistent with the game’s existing mechanics.\n\n---\n\n## 1. Run Structure and Game Flow\n\n- **Genre:** Single-player roguelike deck builder based on poker.  \n- **Run composition:** Each run is divided into *antes*, and each ante has **three blinds** — small, big, and boss.  \n- **Goal:** Play poker hands to reach the target score set by each blind.\n- **Limits:** Each blind gives a fixed number of **hands and discards**. If the player runs out before hitting the target, the run ends.  \n- **Rewards:** Defeating a blind grants **cash** and transitions to a **shop** where players can buy booster packs, jokers, and vouchers. Unspent cash earns **interest** after each blind.  \n- **Progression:** A normal run ends after the **boss blind of Ante 8**, making the player a *Finisher*. Endless mode continues beyond Ante 8.  \n- **Starting deck:** Standard 52-card deck (2–10, J, Q, K, A in four suits). Deck can be modified by **Tarot**, **Planet**, and **Spectral** cards.\n\n---\n\n## 2. Poker Hands and Scoring\n\nBalatro scoring follows standard poker hands.  \nEach hand awards **Chips** and **Mult** — the product determines the score.\n\nAfter each hand, Chips and Mult reset.\n\n### 2.1 Base Chip and Mult Values\n\n| Hand Type        | Base Chips | Base Mult |\n|------------------|-------------|-----------|\n| High Card        | 5           | ×1        |\n| Pair             | 10          | ×2        |\n| Two Pair         | 20          | ×2        |\n| Three of a Kind  | 30          | ×3        |\n| Straight         | 30          | ×4        |\n| Flush            | 35          | ×4        |\n| Full House       | 40          | ×4        |\n| Four of a Kind   | 60          | ×7        |\n| Straight Flush   | 100         | ×8        |\n\nHands start at **level 1** and can be upgraded with **Planet cards**, increasing chip and mult values.\n\n### 2.2 Chips and Card Values\n\n- **Chips × Mult = Score**\n- Base chip values by card rank:\n  - 2–10 → face value  \n  - J, Q, K → 10 chips  \n  - A → 11 chips\n- **Modifiers:**\n  - *Bonus cards:* +30 chips  \n  - *Stone cards:* Add chip multipliers or special effects\n\n### 2.3 Mult and Mult Cards\n\n- **Mult** = multiplier applied to total chips.\n- Example: 100 chips × 3 Mult = 300 points.\n- **Mult Cards:** One of eight enhancement types.\n  - When played, grant **+4 Mult** in addition to chip value.\n  - Example: *Mult Card Seven of Hearts* = 7 chips + 4 Mult.\n- **Additive vs Multiplicative Mult:**\n  - *Additive (+)* — adds flat Mult (e.g. +2 Mult)\n  - *Multiplicative (×)* — multiplies existing Mult (e.g. ×2)\n  - Strategy: Prioritize flat Mult early, then Chips, apply ×Mult effects last.\n\n---\n\n## 3. Jokers\n\n- Special cards obtained in shops or booster packs.\n- Modify **Chips**, **Mult**, or other game parameters.\n- Can trigger on specific events (e.g., play, discard, scoring).\n- **Variants:**  \n  - *Foil* (+50% chips)  \n  - *Holographic* (+1 Mult)  \n  - *Polychrome* (×1.5 Mult)  \n  - *Negative* (+1 Joker slot)\n- Effects **stack** with base joker abilities.\n- Total at launch: **150 Joker cards**.\n- Core mechanic for high-score synergy via chip/mult/multiplicative combos.\n\n---\n\n## 4. Planet, Tarot, and Spectral Cards\n\n- **Planet Cards:** Upgrade levels of specific poker hands (High Card → Straight Flush).  \n  Playing one increases that hand’s level for future scoring.\n- **Tarot Cards:** Modify deck composition.\n  - Can add/remove/enhance cards (e.g., convert to Mult or Stone cards).\n- **Spectral Cards:** One-time powerful effects (e.g., destroy, transform, or upgrade cards).\n  - Some alter shop prices or provide unique modifiers.\n\n---\n\n## 5. Deck Modifications and Unique Hands\n\n- Deck edits allow **non-traditional hands**, e.g.:\n  - *Five of a Kind*, *Flush House*, *Straight Flush Five*, etc.\n- Game engine recognizes and scores these properly.\n- **Alternative Decks** and **Stakes** (from updates) change starting conditions and difficulty — optional but non-core.\n\n---\n\n## 6. End Conditions and Endless Mode\n\n- A run ends if target score isn’t met within the hand/discard limit.  \n- Beating the **boss blind of Ante 8** = *Finisher* title.  \n- **Endless Mode:** continues beyond Ante 8 with escalating targets.\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1280,
+        -144
+      ],
+      "id": "2e8d5a59-d2fa-43e4-855d-334d59ac2a51",
+      "name": "AI Agent1",
+      "retryOnFail": true,
+      "waitBetweenTries": 100
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"title\": \"Lead Designer Orchestrator Agent Output\",\n  \"type\": \"object\",\n  \"additionalProperties\": false,\n  \"properties\": {\n    \"balancePlan\": {\n      \"description\": \"Summary of balance adjustments and mitigations coordinated with the simulator findings.\",\n      \"examples\": [\n        {\n          \"globalVerdict\": \"Keep joker rare; cap multiplier growth by ante 6.\",\n          \"mitigations\": [\n            \"Gate effect behind discard cost scaling\",\n            \"Increase shop price by 2x baseline\"\n          ],\n          \"rationale\": \"Simulator flagged runaway econ in busted seed.\"\n        }\n      ],\n      \"properties\": {\n        \"globalVerdict\": {\n          \"description\": \"Single sentence verdict on balance viability.\",\n          \"examples\": [\n            \"Balanced with mitigation applied to econ scaling.\"\n          ],\n          \"type\": \"string\"\n        },\n        \"mitigations\": {\n          \"default\": [],\n          \"description\": \"Concrete balance levers to apply or monitor.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        },\n        \"rationale\": {\n          \"description\": \"Key simulator evidence supporting the verdict.\",\n          \"examples\": [\n            \"Baseline run safe; busted run needs ante 5 cap.\"\n          ],\n          \"type\": \"string\"\n        }\n      },\n      \"required\": [\n        \"globalVerdict\",\n        \"mitigations\",\n        \"rationale\"\n      ],\n      \"type\": \"object\"\n    },\n    \"delegationLog\": {\n      \"default\": [],\n      \"description\": \"Chronological log of subordinate agent calls and how outputs were used.\",\n      \"items\": {\n        \"additionalProperties\": false,\n        \"properties\": {\n          \"decisionImpact\": {\n            \"description\": \"Consequence of the delegate's output on the overall plan.\",\n            \"examples\": [\n              \"Adopted synergy package SP-02 as primary path.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"outputReference\": {\n            \"description\": \"Identifier or file path pointing to the stored delegate result.\",\n            \"examples\": [\n              \"synergy_report#SP-02\"\n            ],\n            \"type\": \"string\"\n          },\n          \"promptExcerpt\": {\n            \"description\": \"Key instructions sent to the subordinate agent.\",\n            \"examples\": [\n              \"Rank joker synergies for discard-centric decks.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"tool\": {\n            \"description\": \"Name of the subordinate agent or tool invoked.\",\n            \"examples\": [\n              \"joker_synergy_specialist_agent\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"decisionImpact\",\n          \"outputReference\",\n          \"promptExcerpt\",\n          \"tool\"\n        ],\n        \"type\": \"object\"\n      },\n      \"type\": \"array\"\n    },\n    \"designSummary\": {\n      \"description\": \"Concise recap of the design intent and success criteria.\",\n      \"examples\": [\n        {\n          \"coreGoal\": \"Deliver a joker that scales discard-based straights into late antes.\",\n          \"notableConstraints\": [\n            \"Must not break daily challenge balance\",\n            \"Keep rarity at Legendary\"\n          ],\n          \"playerFantasy\": \"Reward high-skill sequencing with escalating payoff\",\n          \"successMetrics\": [\n            \"Win rate +5% over discard decks\",\n            \"Maintain ante 8 clear rate parity\"\n          ]\n        }\n      ],\n      \"properties\": {\n        \"coreGoal\": {\n          \"description\": \"Primary gameplay objective for the design.\",\n          \"examples\": [\n            \"Enable discard decks to spike chips without infinite loops.\"\n          ],\n          \"type\": \"string\"\n        },\n        \"notableConstraints\": {\n          \"default\": [],\n          \"description\": \"Hard constraints or banned elements supplied in the brief.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        },\n        \"playerFantasy\": {\n          \"description\": \"Flavor-forward articulation of the player experience.\",\n          \"examples\": [\n            \"Feeling like a card shark stacking discards into jackpots.\"\n          ],\n          \"type\": \"string\"\n        },\n        \"successMetrics\": {\n          \"default\": [],\n          \"description\": \"Quantifiable indicators of success aligned with Balatro metrics.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        }\n      },\n      \"required\": [\n        \"coreGoal\",\n        \"notableConstraints\",\n        \"playerFantasy\",\n        \"successMetrics\"\n      ],\n      \"type\": \"object\"\n    },\n    \"jokerSpec\": {\n      \"description\": \"Finalized joker card definition ready for implementation review.\",\n      \"examples\": [\n        {\n          \"baseChips\": 20,\n          \"baseMultiplier\": 2,\n          \"effectText\": \"Gain +4 Mult for each discarded straight this round.\",\n          \"jokerName\": \"Straight Razor\",\n          \"justification\": \"Leverages discard synergy while simulator mitigations keep busted seeds in check.\",\n          \"price\": 16,\n          \"rarity\": \"rare\",\n          \"tags\": [\n            \"discard\",\n            \"straight\"\n          ],\n          \"unlockCondition\": \"Win a run using at least 30 discarded straights.\"\n        }\n      ],\n      \"properties\": {\n        \"baseChips\": {\n          \"description\": \"Base chip value granted by the joker.\",\n          \"examples\": [\n            20\n          ],\n          \"minimum\": 0,\n          \"type\": \"number\"\n        },\n        \"baseMultiplier\": {\n          \"description\": \"Base multiplier granted by the joker.\",\n          \"examples\": [\n            2\n          ],\n          \"minimum\": 0,\n          \"type\": \"number\"\n        },\n        \"effectText\": {\n          \"description\": \"Player-facing Balatro rules text describing the joker effect.\",\n          \"examples\": [\n            \"Gain +4 Mult for each discarded straight this round.\"\n          ],\n          \"type\": \"string\"\n        },\n        \"jokerName\": {\n          \"description\": \"Display name of the joker card.\",\n          \"examples\": [\n            \"Straight Razor\"\n          ],\n          \"type\": \"string\"\n        },\n        \"justification\": {\n          \"description\": \"Evidence-backed rationale referencing delegate findings and balance outcomes.\",\n          \"examples\": [\n            \"Synergy package SP-02 drives discard loops; simulator shows safe growth with price hike.\"\n          ],\n          \"type\": \"string\"\n        },\n        \"price\": {\n          \"description\": \"Shop price recommendation for the joker in dollars.\",\n          \"examples\": [\n            16\n          ],\n          \"minimum\": 0,\n          \"type\": \"number\"\n        },\n        \"rarity\": {\n          \"description\": \"Recommended rarity tier for the joker.\",\n          \"enum\": [\n            \"common\",\n            \"uncommon\",\n            \"rare\",\n            \"legendary\"\n          ],\n          \"examples\": [\n            \"rare\"\n          ],\n          \"type\": \"string\"\n        },\n        \"tags\": {\n          \"default\": [],\n          \"description\": \"Keywords summarizing archetypes, mechanics, or hooks.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        },\n        \"unlockCondition\": {\n          \"description\": \"Optional condition for unlocking the joker, if applicable.\",\n          \"examples\": [\n            \"Win a run using at least 30 discarded straights.\"\n          ],\n          \"type\": \"string\"\n        }\n      },\n      \"required\": [\n        \"baseChips\",\n        \"baseMultiplier\",\n        \"effectText\",\n        \"jokerName\",\n        \"justification\",\n        \"price\",\n        \"rarity\",\n        \"tags\"\n      ],\n      \"type\": \"object\"\n    },\n    \"openRisks\": {\n      \"default\": [],\n      \"description\": \"Outstanding questions or threats that need follow-up.\",\n      \"items\": {\n        \"additionalProperties\": false,\n        \"properties\": {\n          \"notes\": {\n            \"description\": \"Relevant context or mitigation ideas.\",\n            \"examples\": [\n              \"Requires confirmation from community telemetry.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"owner\": {\n            \"description\": \"Person or role accountable for resolving the risk.\",\n            \"examples\": [\n              \"QA lead\"\n            ],\n            \"type\": \"string\"\n          },\n          \"riskId\": {\n            \"description\": \"Unique identifier for cross-agent tracking.\",\n            \"examples\": [\n              \"risk-ante6-econ\"\n            ],\n            \"type\": \"string\"\n          },\n          \"severity\": {\n            \"description\": \"Relative severity label.\",\n            \"enum\": [\n              \"low\",\n              \"medium\",\n              \"high\"\n            ],\n            \"examples\": [\n              \"high\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"notes\",\n          \"owner\",\n          \"riskId\",\n          \"severity\"\n        ],\n        \"type\": \"object\"\n      },\n      \"type\": \"array\"\n    },\n    \"synergyPlan\": {\n      \"default\": [],\n      \"description\": \"How the orchestrator will incorporate synergy packages into the design.\",\n      \"items\": {\n        \"additionalProperties\": false,\n        \"properties\": {\n          \"integrationDecision\": {\n            \"description\": \"Adopt, modify, or reject decision for the package.\",\n            \"enum\": [\n              \"adopt\",\n              \"modify\",\n              \"reject\"\n            ],\n            \"examples\": [\n              \"adopt\"\n            ],\n            \"type\": \"string\"\n          },\n          \"notes\": {\n            \"description\": \"Reasoning behind the decision and instructions for implementation.\",\n            \"examples\": [\n              \"Adopt with cap; ensure shop scaling matches ante 6 targets.\"\n            ],\n            \"type\": \"string\"\n          },\n          \"packageId\": {\n            \"description\": \"Identifier referencing the synergy specialist output.\",\n            \"examples\": [\n              \"SP-02\"\n            ],\n            \"type\": \"string\"\n          },\n          \"sourceAgent\": {\n            \"description\": \"Name of the agent providing the package.\",\n            \"examples\": [\n              \"joker_synergy_specialist_agent\"\n            ],\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"integrationDecision\",\n          \"notes\",\n          \"packageId\",\n          \"sourceAgent\"\n        ],\n        \"type\": \"object\"\n      },\n      \"type\": \"array\"\n    },\n    \"validationHooks\": {\n      \"description\": \"Testing and instrumentation guidance for future automation or QA.\",\n      \"examples\": [\n        {\n          \"harnessSeeds\": [\n            \"baseline-seed-103\",\n            \"synergy-seed-227\",\n            \"busted-seed-404\"\n          ],\n          \"metrics\": [\n            \"chipsPerAnte\",\n            \"multiplierVariance\"\n          ],\n          \"nextSteps\": [\n            \"Record simulator screenshots\",\n            \"Schedule QA deck review\"\n          ]\n        }\n      ],\n      \"properties\": {\n        \"harnessSeeds\": {\n          \"default\": [],\n          \"description\": \"Named seeds or scenario IDs to replay in the harness.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        },\n        \"metrics\": {\n          \"default\": [],\n          \"description\": \"Metrics to monitor when executing validation runs.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        },\n        \"nextSteps\": {\n          \"default\": [],\n          \"description\": \"Actionable follow-ups for humans or other agents.\",\n          \"items\": {\n            \"type\": \"string\"\n          },\n          \"type\": \"array\"\n        }\n      },\n      \"required\": [\n        \"harnessSeeds\",\n        \"metrics\",\n        \"nextSteps\"\n      ],\n      \"type\": \"object\"\n    }\n  },\n  \"required\": [\n    \"balancePlan\",\n    \"delegationLog\",\n    \"designSummary\",\n    \"jokerSpec\",\n    \"openRisks\",\n    \"synergyPlan\",\n    \"validationHooks\"\n  ]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1696,
+        80
+      ],
+      "id": "1701e6da-f9cc-41dd-bef7-f79ce19e4b05",
+      "name": "Structured Output Parser3"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {
+          "reasoningEffort": "high",
+          "timeout": 300000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        992,
+        80
+      ],
+      "id": "df9911ed-0b90-4dce-bfdb-e3d02a2f1f32",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "1lkBcOr7FVmY5bn6",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "allowFileUploads": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        1024,
+        -144
+      ],
+      "id": "9b2e525f-29aa-401f-a4bc-ddc95898ad62",
+      "name": "When chat message received",
+      "webhookId": "fb0dfe98-3201-4faf-81a2-61606c5e6207"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "joker_synergy_specialist_agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "joker_synergy_specialist_agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "joker_synergy_specialist_agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "run_balance_simulator_agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "run_balance_simulator_agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "run_balance_simulator_agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3d6b1665-0714-47cc-8ece-b02bc6e9e133",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d5d9170e32fb6d69210f48d56786d762236eefabfcbee76ba1ba6fdab2d8c102"
+  },
+  "id": "04jxiWVQXJocxEVU",
+  "tags": []
+}

@@ -18,7 +18,7 @@ Coordinate Balatro card-design sprints by translating a high-level brief into ac
 - Concrete joker specification with effect, rarity, economy tuning, and justification.
 - Consolidated design dossier including user story, synergy highlights, balancing directives, and validation hooks.
 - Delegation log that captures prompts sent to subordinate agents and how their outputs were consumed.
-- Open questions or risks that require additional research or future automation.
+- Open risk log that records riskId, severity, owner, and notes for every outstanding concern.
 
 ## Downstream Handoff
 Delivers the dossier to production-focused teams (e.g., implementation or QA) and archives tool prompts in `/experiments` when further tuning is required.
@@ -30,12 +30,15 @@ Delivers the dossier to production-focused teams (e.g., implementation or QA) an
 
 ## Prompt & Schema Crosswalk
 - Ensure every directive for subordinate usage is mirrored by `delegationLog` entries in the schema.
-- Require the dossier sections (mission recap, synergy plan, balance plan, validation plan) that map to `designSummary`, `synergyPlan`, `balancePlan`, `validationHooks`, and `jokerSpec` fields.
-- Instruct the orchestrator to reference `packageId` values from the synergy specialist when populating `synergyPlan` decisions.
-- Explicitly mention risk tracking in the prompt so the `openRisks` array is always considered.
+- Require the dossier sections (mission recap, synergy plan, balance plan, validation plan).
+  Map them to `designSummary`, `synergyPlan`, `balancePlan`, `validationHooks`, and `jokerSpec` fields.
+- Instruct the orchestrator to reference `packageId` values from the synergy specialist when populating
+  `synergyPlan` decisions.
+- Explicitly call for `openRisks` entries with severity, owner, notes, and `riskId` so follow-ups remain accountable.
 
 ## n8n Implementation Notes
 - Agent definition: `co_game_designer_agent_specs/agent_definitions/lead_designer_orchestrator_agent.json`.
+- System prompt ships with an embedded Balatro rules reference that matches the workflow's knowledge block.
 - `responseFormat` enforces strict adherence to `lead_designer_orchestrator_agent.json`.
 - `delegateAgents` field mirrors runtime calls to synergy and balance specialists for orchestration tooling.
 

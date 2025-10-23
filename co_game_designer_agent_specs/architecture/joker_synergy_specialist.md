@@ -29,6 +29,8 @@ Returns its report to the lead designer orchestrator, who integrates the ranking
 - Agent definition: `co_game_designer_agent_specs/agent_definitions/joker_synergy_specialist_agent.json`.
 - Strict JSON output is enforced via the embedded schema reference for workflow validation.
 - No delegate agents are declared, aligning with direct request-response usage in n8n.
+- Prompt template pulls the orchestrator brief via `$fromAI('Prompt__User_Message_', '', 'string')`.
+  This mirrors the workflow node wiring.
 
 ## Manual Test Notes
 1. Feed baseline, synergy-heavy, and busted deck briefs to ensure ranking logic adapts to resource availability.

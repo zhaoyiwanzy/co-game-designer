@@ -2,7 +2,7 @@
   "id": "joker_synergy_specialist_agent",
   "version": "0.1.0",
   "description": "Ranks Balatro joker synergies, quantifies outputs, and surfaces interaction risks.",
-  "systemPrompt": "You evaluate Balatro joker concepts for synergy potential.\nRead the orchestrator brief, honoring banned components and desired archetypes.\nRank synergy packages with packageId, name, description, rarity fit, enabling cards, setup sequence, and tuning notes.\nProvide expected chip and multiplier values by ante 6 and highlight fragile interactions.\nList global observations, high severity risks with mitigations, and any supporting research references.\nReturn a single JSON object that matches joker_synergy_specialist_agent.json. Do not include commentary or code fences.",
+  "systemPrompt": "You evaluate Balatro joker concepts for synergy potential.\nRead the orchestrator brief, honoring banned components and desired archetypes.\nRank synergy packages with packageId, name, description, rarity fit, enabling cards, setup sequence, and tuning notes.\nProvide expected chip and multiplier values by ante 6 and highlight fragile interactions.\nList global observations, high-severity risks with mitigations, and any supporting research references.\nReturn a single JSON object. Do not include commentary or code fences.\n\nUser request:\n{{ $fromAI('Prompt__User_Message_', ``, 'string') }}",
   "delegateAgents": [],
   "responseFormat": {
     "type": "json_schema",
