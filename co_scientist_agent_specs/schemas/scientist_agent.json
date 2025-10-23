@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResearchReportData",
+  "type": "object",
+  "properties": {
+    "short_summary": {
+      "type": "string",
+      "description": "2-3 sentence executive summary of the findings."
+    },
+    "markdown_report": {
+      "type": "string",
+      "description": "Full markdown-formatted research report."
+    },
+    "related_works": {
+      "type": "array",
+      "description": "List of cross-disciplinary works that add additional insight.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Cited references in standard format.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the reference."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to the reference."
+          }
+        },
+        "required": [
+          "title",
+          "url"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "short_summary",
+    "markdown_report",
+    "related_works",
+    "references"
+  ],
+  "additionalProperties": false
+}

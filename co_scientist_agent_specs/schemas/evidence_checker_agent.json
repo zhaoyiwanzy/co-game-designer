@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceResult",
+  "type": "object",
+  "properties": {
+    "evidence_items": {
+      "type": "array",
+      "description": "Synthesized evidence summaries tied to specific papers.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "evidence": {
+            "type": "string",
+            "description": "Concise justification extracted from the paper in the context of the question."
+          },
+          "paper": {
+            "type": "object",
+            "description": "Reference associated with the evidence.",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Title of the reference."
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to the reference."
+              },
+              "summary": {
+                "type": "string",
+                "description": "Brief summary highlighting research purpose and methodology."
+              }
+            },
+            "required": [
+              "title",
+              "url",
+              "summary"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "evidence",
+          "paper"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "evidence_items"
+  ],
+  "additionalProperties": false
+}

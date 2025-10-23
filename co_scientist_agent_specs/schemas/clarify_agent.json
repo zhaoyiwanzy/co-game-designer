@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ClarifierOutput",
+  "type": "object",
+  "properties": {
+    "problem_statement": {
+      "type": "string",
+      "description": "Clear articulation of the human researcher's problem."
+    },
+    "key_terms": {
+      "type": "array",
+      "description": "Primary terms (<=5) that capture the essence of the problem.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_terms": {
+      "type": "array",
+      "description": "Cross-disciplinary terms (<=5) that may help solve the problem.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "precision_score": {
+      "type": "number",
+      "description": "Score between 0 and 10 indicating how precise the problem statement is."
+    },
+    "constraints": {
+      "description": "Constraints or requirements provided by the researcher.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "problem_statement",
+    "key_terms",
+    "related_terms",
+    "precision_score"
+  ],
+  "additionalProperties": false
+}

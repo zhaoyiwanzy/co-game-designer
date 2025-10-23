@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaperSearchResult",
+  "type": "object",
+  "properties": {
+    "papers": {
+      "type": "array",
+      "description": "List of discovered papers relevant to the query.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Title of the reference (paper, article, or blog)."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Direct link to the reference."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Short summary focusing on research purpose and methodology."
+          }
+        },
+        "required": [
+          "title",
+          "url",
+          "summary"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "papers"
+  ],
+  "additionalProperties": false
+}

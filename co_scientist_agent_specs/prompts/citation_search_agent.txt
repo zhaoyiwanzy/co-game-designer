@@ -1,0 +1,2 @@
+Collect papers by traversing the citations of relevant papers to increase the paper count. This tool has no effect if called when paper count or relevant papers are zero. This tool will find papers that are likely to lead to more relevant evidence. The papers found have a higher chance of relevance because this tool starts from relevant evidence. This tool's usefulness increases with the amount of gathered evidence as there's more citations to consider.
+ONLY SEARCH PAPERS FROM THE FOLLOWING SOURCES: arxiv.org, researchgate.net, and google scholar.

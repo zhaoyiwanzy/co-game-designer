@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TalkativeClarifierOutput",
+  "type": "object",
+  "properties": {
+    "problem_statement": {
+      "type": "string",
+      "description": "Clear articulation of the human researcher's problem."
+    },
+    "key_terms": {
+      "type": "array",
+      "description": "Primary terms (<=5) that capture the essence of the problem.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "related_terms": {
+      "type": "array",
+      "description": "Cross-disciplinary terms (<=5) that may help solve the problem.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "description": "Constraints or requirements provided by the researcher.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "additional_questions": {
+      "type": "object",
+      "description": "Follow-up questions for the researcher when clarification is needed.",
+      "properties": {
+        "prompt": {
+          "type": "string",
+          "description": "Message requesting additional clarification from the researcher."
+        },
+        "questions": {
+          "type": "array",
+          "description": "List of specific clarification questions (0-3 items).",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "prompt",
+        "questions"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "problem_statement",
+    "key_terms",
+    "related_terms",
+    "additional_questions"
+  ],
+  "additionalProperties": false
+}

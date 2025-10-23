@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchAgentOutput",
+  "type": "string",
+  "description": "Short (<=300 word) summary of up-to-date findings relevant to the search term."
+}
