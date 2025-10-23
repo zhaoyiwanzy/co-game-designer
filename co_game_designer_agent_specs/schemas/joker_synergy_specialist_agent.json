@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Joker Synergy Specialist Agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "globalObservations": {
+      "default": [],
+      "description": "High-level notes about the joker concept and metagame context.",
+      "examples": [
+        "Discard-focused decks lack payoff unless paired with piston jokers."
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "risks": {
+      "default": [],
+      "description": "Potential pitfalls or incompatibilities discovered during the analysis.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "What could go wrong if the package is adopted.",
+            "examples": [
+              "Stacking with Madness joker doubles the multiplier curve."
+            ],
+            "type": "string"
+          },
+          "mitigation": {
+            "description": "Suggested guardrail or monitoring plan.",
+            "examples": [
+              "Cap base chips at 40 when paired with Madness."
+            ],
+            "type": "string"
+          },
+          "riskId": {
+            "description": "Identifier for cross-agent traceability.",
+            "examples": [
+              "risk-madness-overlap"
+            ],
+            "type": "string"
+          },
+          "severity": {
+            "description": "Relative severity label.",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "examples": [
+              "high"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "mitigation",
+          "riskId",
+          "severity"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "summary": {
+      "description": "One-paragraph synthesis of the joker synergy landscape.",
+      "examples": [
+        "Discard engines gain the most, provided economy levers offset the multiplier spike."
+      ],
+      "type": "string"
+    },
+    "supportingResearch": {
+      "default": [],
+      "description": "Pointers to experiments, spreadsheets, or references used in the analysis.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "Why the source matters for this recommendation.",
+            "examples": [
+              "Win-rate logs from week 34 patch."
+            ],
+            "type": "string"
+          },
+          "link": {
+            "description": "Optional URL or file path if accessible.",
+            "examples": [
+              "experiments/synergy_runs/week34.md"
+            ],
+            "type": "string"
+          },
+          "sourceId": {
+            "description": "Unique identifier for the research artifact.",
+            "examples": [
+              "exp-34-discard-logs"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "sourceId"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "synergyPackages": {
+      "default": [],
+      "description": "Ranked synergy packages with quantitative expectations.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "How the synergy behaves and what gameplay it unlocks.",
+            "examples": [
+              "Chain discards with Flush House to convert draw cycles into chip bursts."
+            ],
+            "type": "string"
+          },
+          "enablingCards": {
+            "default": [],
+            "description": "Cards, jokers, or consumables required to realize the package.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "expectedChips": {
+            "description": "Expected chip gain by ante 6 under optimal play.",
+            "examples": [
+              280
+            ],
+            "minimum": 0,
+            "type": "number"
+          },
+          "expectedMultiplier": {
+            "description": "Expected multiplier value by ante 6.",
+            "examples": [
+              18
+            ],
+            "minimum": 0,
+            "type": "number"
+          },
+          "name": {
+            "description": "Short name for the synergy package.",
+            "examples": [
+              "Discard Dynamo"
+            ],
+            "type": "string"
+          },
+          "packageId": {
+            "description": "Stable identifier used by the orchestrator when referencing this package.",
+            "examples": [
+              "SP-02"
+            ],
+            "type": "string"
+          },
+          "rarityFit": {
+            "description": "Best-fit joker rarity for balance.",
+            "enum": [
+              "common",
+              "uncommon",
+              "rare",
+              "legendary"
+            ],
+            "examples": [
+              "rare"
+            ],
+            "type": "string"
+          },
+          "setupSequence": {
+            "default": [],
+            "description": "Ordered steps or milestones to assemble the synergy.",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "tuningNotes": {
+            "description": "Suggestions to tweak numbers or effects for this package.",
+            "examples": [
+              "Limit joker activation to once per round."
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "enablingCards",
+          "expectedChips",
+          "expectedMultiplier",
+          "name",
+          "packageId",
+          "rarityFit",
+          "setupSequence",
+          "tuningNotes"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "globalObservations",
+    "risks",
+    "summary",
+    "supportingResearch",
+    "synergyPackages"
+  ]
+}

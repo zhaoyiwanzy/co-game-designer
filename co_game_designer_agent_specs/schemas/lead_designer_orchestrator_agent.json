@@ -1,0 +1,312 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lead Designer Orchestrator Agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "balancePlan": {
+      "description": "Summary of balance adjustments and mitigations coordinated with the simulator findings.",
+      "examples": [
+        {
+          "globalVerdict": "Keep joker rare; cap multiplier growth by ante 6.",
+          "mitigations": [
+            "Gate effect behind discard cost scaling",
+            "Increase shop price by 2x baseline"
+          ],
+          "rationale": "Simulator flagged runaway econ in busted seed."
+        }
+      ],
+      "properties": {
+        "globalVerdict": {
+          "description": "Single sentence verdict on balance viability.",
+          "examples": [
+            "Balanced with mitigation applied to econ scaling."
+          ],
+          "type": "string"
+        },
+        "mitigations": {
+          "default": [],
+          "description": "Concrete balance levers to apply or monitor.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rationale": {
+          "description": "Key simulator evidence supporting the verdict.",
+          "examples": [
+            "Baseline run safe; busted run needs ante 5 cap."
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "globalVerdict",
+        "mitigations",
+        "rationale"
+      ],
+      "type": "object"
+    },
+    "delegationLog": {
+      "default": [],
+      "description": "Chronological log of subordinate agent calls and how outputs were used.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "decisionImpact": {
+            "description": "Consequence of the delegate's output on the overall plan.",
+            "examples": [
+              "Adopted synergy package SP-02 as primary path."
+            ],
+            "type": "string"
+          },
+          "outputReference": {
+            "description": "Identifier or file path pointing to the stored delegate result.",
+            "examples": [
+              "synergy_report#SP-02"
+            ],
+            "type": "string"
+          },
+          "promptExcerpt": {
+            "description": "Key instructions sent to the subordinate agent.",
+            "examples": [
+              "Rank joker synergies for discard-centric decks."
+            ],
+            "type": "string"
+          },
+          "tool": {
+            "description": "Name of the subordinate agent or tool invoked.",
+            "examples": [
+              "joker_synergy_specialist_agent"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "decisionImpact",
+          "outputReference",
+          "promptExcerpt",
+          "tool"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "designSummary": {
+      "description": "Concise recap of the design intent and success criteria.",
+      "examples": [
+        {
+          "coreGoal": "Deliver a joker that scales discard-based straights into late antes.",
+          "notableConstraints": [
+            "Must not break daily challenge balance",
+            "Keep rarity at Legendary"
+          ],
+          "playerFantasy": "Reward high-skill sequencing with escalating payoff",
+          "successMetrics": [
+            "Win rate +5% over discard decks",
+            "Maintain ante 8 clear rate parity"
+          ]
+        }
+      ],
+      "properties": {
+        "coreGoal": {
+          "description": "Primary gameplay objective for the design.",
+          "examples": [
+            "Enable discard decks to spike chips without infinite loops."
+          ],
+          "type": "string"
+        },
+        "notableConstraints": {
+          "default": [],
+          "description": "Hard constraints or banned elements supplied in the brief.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "playerFantasy": {
+          "description": "Flavor-forward articulation of the player experience.",
+          "examples": [
+            "Feeling like a card shark stacking discards into jackpots."
+          ],
+          "type": "string"
+        },
+        "successMetrics": {
+          "default": [],
+          "description": "Quantifiable indicators of success aligned with Balatro metrics.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "coreGoal",
+        "notableConstraints",
+        "playerFantasy",
+        "successMetrics"
+      ],
+      "type": "object"
+    },
+    "openRisks": {
+      "default": [],
+      "description": "Outstanding questions or threats that need follow-up.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "notes": {
+            "description": "Relevant context or mitigation ideas.",
+            "examples": [
+              "Requires confirmation from community telemetry."
+            ],
+            "type": "string"
+          },
+          "owner": {
+            "description": "Person or role accountable for resolving the risk.",
+            "examples": [
+              "QA lead"
+            ],
+            "type": "string"
+          },
+          "riskId": {
+            "description": "Unique identifier for cross-agent tracking.",
+            "examples": [
+              "risk-ante6-econ"
+            ],
+            "type": "string"
+          },
+          "severity": {
+            "description": "Relative severity label.",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "examples": [
+              "high"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "notes",
+          "owner",
+          "riskId",
+          "severity"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "synergyPlan": {
+      "default": [],
+      "description": "How the orchestrator will incorporate synergy packages into the design.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "integrationDecision": {
+            "description": "Adopt, modify, or reject decision for the package.",
+            "enum": [
+              "adopt",
+              "modify",
+              "reject"
+            ],
+            "examples": [
+              "adopt"
+            ],
+            "type": "string"
+          },
+          "notes": {
+            "description": "Reasoning behind the decision and instructions for implementation.",
+            "examples": [
+              "Adopt with cap; ensure shop scaling matches ante 6 targets."
+            ],
+            "type": "string"
+          },
+          "packageId": {
+            "description": "Identifier referencing the synergy specialist output.",
+            "examples": [
+              "SP-02"
+            ],
+            "type": "string"
+          },
+          "sourceAgent": {
+            "description": "Name of the agent providing the package.",
+            "examples": [
+              "joker_synergy_specialist_agent"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "integrationDecision",
+          "notes",
+          "packageId",
+          "sourceAgent"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "validationHooks": {
+      "description": "Testing and instrumentation guidance for future automation or QA.",
+      "examples": [
+        {
+          "harnessSeeds": [
+            "baseline-seed-103",
+            "synergy-seed-227",
+            "busted-seed-404"
+          ],
+          "metrics": [
+            "chipsPerAnte",
+            "multiplierVariance"
+          ],
+          "nextSteps": [
+            "Record simulator screenshots",
+            "Schedule QA deck review"
+          ]
+        }
+      ],
+      "properties": {
+        "harnessSeeds": {
+          "default": [],
+          "description": "Named seeds or scenario IDs to replay in the harness.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metrics": {
+          "default": [],
+          "description": "Metrics to monitor when executing validation runs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nextSteps": {
+          "default": [],
+          "description": "Actionable follow-ups for humans or other agents.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "harnessSeeds",
+        "metrics",
+        "nextSteps"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "balancePlan",
+    "delegationLog",
+    "designSummary",
+    "openRisks",
+    "synergyPlan",
+    "validationHooks"
+  ]
+}

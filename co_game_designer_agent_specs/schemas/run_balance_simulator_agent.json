@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Run Balance Simulator Agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "balanceVerdict": {
+      "description": "Overall statement about balance health across simulated runs.",
+      "examples": [
+        "Playable with mitigation; busted seeds exceed multiplier targets by ante 7."
+      ],
+      "type": "string"
+    },
+    "mitigationIdeas": {
+      "default": [],
+      "description": "Recommended levers or follow-up actions based on simulation findings.",
+      "examples": [
+        "Add escalating shop cost after first purchase"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "scenarioReports": {
+      "default": [],
+      "description": "Per-scenario metrics and risk summaries.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "anteProgression": {
+            "default": [],
+            "description": "Key milestones or breakpoints observed by ante.",
+            "examples": [
+              [
+                {
+                  "ante": 2,
+                  "note": "Economy stable"
+                },
+                {
+                  "ante": 5,
+                  "note": "Chip spike begins"
+                }
+              ]
+            ],
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "ante": {
+                  "description": "Ante number for the observation.",
+                  "examples": [
+                    5
+                  ],
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "note": {
+                  "description": "What happens at this ante milestone.",
+                  "examples": [
+                    "Player reliably clears blinds with 2 hands."
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "ante",
+                "note"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "chipTrajectory": {
+            "default": [],
+            "description": "Estimated chip outputs per ante for the scenario.",
+            "examples": [
+              [
+                {
+                  "ante": 3,
+                  "chips": 120
+                },
+                {
+                  "ante": 6,
+                  "chips": 320
+                }
+              ]
+            ],
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "ante": {
+                  "description": "Ante at which the chip estimate applies.",
+                  "examples": [
+                    6
+                  ],
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "chips": {
+                  "description": "Estimated chip output for a typical winning hand.",
+                  "examples": [
+                    280
+                  ],
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "ante",
+                "chips"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "economySummary": {
+            "description": "Overview of money flow, shop purchases, and scarcity pressures.",
+            "examples": [
+              "Baseline survives with 12$ buffer; busted run prints infinite cash via coupon loop."
+            ],
+            "type": "string"
+          },
+          "multiplierTrajectory": {
+            "default": [],
+            "description": "Estimated multiplier values per ante.",
+            "examples": [
+              [
+                {
+                  "ante": 4,
+                  "multiplier": 9
+                },
+                {
+                  "ante": 7,
+                  "multiplier": 22
+                }
+              ]
+            ],
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "ante": {
+                  "description": "Ante at which the multiplier applies.",
+                  "examples": [
+                    7
+                  ],
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "multiplier": {
+                  "description": "Estimated multiplier for the scenario.",
+                  "examples": [
+                    18
+                  ],
+                  "minimum": 0,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "ante",
+                "multiplier"
+              ],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "probabilityEstimate": {
+            "description": "Rough likelihood of assembling the scenario conditions.",
+            "examples": [
+              "moderate"
+            ],
+            "enum": [
+              "low",
+              "moderate",
+              "high"
+            ],
+            "type": "string"
+          },
+          "riskNotes": {
+            "default": [],
+            "description": "Risks or anomalies observed in the scenario.",
+            "examples": [
+              [
+                "Multiplier snowballs if Madness also present"
+              ]
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "scenarioName": {
+            "description": "Descriptor for the simulated scenario.",
+            "examples": [
+              "Baseline discard deck"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "anteProgression",
+          "chipTrajectory",
+          "economySummary",
+          "multiplierTrajectory",
+          "probabilityEstimate",
+          "riskNotes",
+          "scenarioName"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "simulationMetadata": {
+      "description": "Assumptions, tool versions, and data sources underpinning the simulation.",
+      "examples": [
+        {
+          "assumptions": [
+            "Player uses optimal discard lines",
+            "Shop offers average rarity distribution"
+          ],
+          "rngSeeds": [
+            "baseline-seed-103",
+            "synergy-seed-227",
+            "busted-seed-404"
+          ],
+          "tools": [
+            "BALATRO_RUN_SIM v1.2"
+          ]
+        }
+      ],
+      "properties": {
+        "assumptions": {
+          "default": [],
+          "description": "Key assumptions that affect interpretation of the results.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rngSeeds": {
+          "default": [],
+          "description": "Named seeds or RNG notes for reproducibility.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tools": {
+          "default": [],
+          "description": "Simulation tools or scripts used to produce the report.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "assumptions",
+        "rngSeeds",
+        "tools"
+      ],
+      "type": "object"
+    },
+    "summary": {
+      "description": "Concise narration of what the simulations revealed.",
+      "examples": [
+        "Synergy-heavy runs demand higher rarity gate; busted loops require cost scaling."
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "balanceVerdict",
+    "mitigationIdeas",
+    "scenarioReports",
+    "simulationMetadata",
+    "summary"
+  ]
+}
