@@ -25,6 +25,11 @@ Returns its report to the lead designer orchestrator, who integrates the ranking
 - Explicitly mention the need for global observations and research references, tying to `globalObservations` and `supportingResearch` fields.
 - Emphasize risk articulation in the prompt to fulfill the `risks` array.
 
+## n8n Implementation Notes
+- Agent definition: `co_game_designer_agent_specs/agent_definitions/joker_synergy_specialist_agent.json`.
+- Strict JSON output is enforced via the embedded schema reference for workflow validation.
+- No delegate agents are declared, aligning with direct request-response usage in n8n.
+
 ## Manual Test Notes
 1. Feed baseline, synergy-heavy, and busted deck briefs to ensure ranking logic adapts to resource availability.
 2. Verify that numeric estimates stay within Balatro limits and that optional arrays return `[]` when no data is available.

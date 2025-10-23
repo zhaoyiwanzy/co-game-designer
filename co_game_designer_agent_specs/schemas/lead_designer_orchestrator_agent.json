@@ -148,6 +148,111 @@
       ],
       "type": "object"
     },
+    "jokerSpec": {
+      "description": "Finalized joker card definition ready for implementation review.",
+      "examples": [
+        {
+          "baseChips": 20,
+          "baseMultiplier": 2,
+          "effectText": "Gain +4 Mult for each discarded straight this round.",
+          "jokerName": "Straight Razor",
+          "justification": "Leverages discard synergy while simulator mitigations keep busted seeds in check.",
+          "price": 16,
+          "rarity": "rare",
+          "tags": [
+            "discard",
+            "straight"
+          ],
+          "unlockCondition": "Win a run using at least 30 discarded straights."
+        }
+      ],
+      "properties": {
+        "baseChips": {
+          "description": "Base chip value granted by the joker.",
+          "examples": [
+            20
+          ],
+          "minimum": 0,
+          "type": "number"
+        },
+        "baseMultiplier": {
+          "description": "Base multiplier granted by the joker.",
+          "examples": [
+            2
+          ],
+          "minimum": 0,
+          "type": "number"
+        },
+        "effectText": {
+          "description": "Player-facing Balatro rules text describing the joker effect.",
+          "examples": [
+            "Gain +4 Mult for each discarded straight this round."
+          ],
+          "type": "string"
+        },
+        "jokerName": {
+          "description": "Display name of the joker card.",
+          "examples": [
+            "Straight Razor"
+          ],
+          "type": "string"
+        },
+        "justification": {
+          "description": "Evidence-backed rationale referencing delegate findings and balance outcomes.",
+          "examples": [
+            "Synergy package SP-02 drives discard loops; simulator shows safe growth with price hike."
+          ],
+          "type": "string"
+        },
+        "price": {
+          "description": "Shop price recommendation for the joker in dollars.",
+          "examples": [
+            16
+          ],
+          "minimum": 0,
+          "type": "number"
+        },
+        "rarity": {
+          "description": "Recommended rarity tier for the joker.",
+          "enum": [
+            "common",
+            "uncommon",
+            "rare",
+            "legendary"
+          ],
+          "examples": [
+            "rare"
+          ],
+          "type": "string"
+        },
+        "tags": {
+          "default": [],
+          "description": "Keywords summarizing archetypes, mechanics, or hooks.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "unlockCondition": {
+          "description": "Optional condition for unlocking the joker, if applicable.",
+          "examples": [
+            "Win a run using at least 30 discarded straights."
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "baseChips",
+        "baseMultiplier",
+        "effectText",
+        "jokerName",
+        "justification",
+        "price",
+        "rarity",
+        "tags"
+      ],
+      "type": "object"
+    },
     "openRisks": {
       "default": [],
       "description": "Outstanding questions or threats that need follow-up.",
@@ -305,6 +410,7 @@
     "balancePlan",
     "delegationLog",
     "designSummary",
+    "jokerSpec",
     "openRisks",
     "synergyPlan",
     "validationHooks"

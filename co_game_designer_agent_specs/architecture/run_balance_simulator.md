@@ -25,6 +25,11 @@ Sends the simulation digest back to the lead designer orchestrator and flags any
 - Require the prompt to gather global balance verdicts and mitigation ideas for `balanceVerdict` and `mitigationIdeas` fields.
 - Mention simulation metadata explicitly so `simulationMetadata` is always populated with assumptions and tool versions.
 
+## n8n Implementation Notes
+- Agent definition: `co_game_designer_agent_specs/agent_definitions/run_balance_simulator_agent.json`.
+- Strict JSON schema enforcement ensures scenario arrays and probability labels are machine-checked in workflow nodes.
+- Downstream automations can inspect `responseFormat` metadata to trigger mitigation alerts in n8n.
+
 ## Manual Test Notes
 1. Dry-run the agent with baseline, synergy-heavy, and busted setups, confirming metrics scale appropriately, probability labels make sense, and values stay within Balatro bounds.
 2. Check that empty optional arrays (e.g., `mitigationIdeas`) default to `[]` when no actions are needed.

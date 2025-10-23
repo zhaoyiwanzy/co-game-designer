@@ -7,13 +7,15 @@ Coordinate Balatro card-design sprints by translating a high-level brief into ac
 - Parse the product brief, distill success criteria, and flag scope assumptions.
 - Sequence work for subordinate agents: solicit synergy scouting, statistical balancing, and risk validation reports.
 - Reconcile conflicting recommendations, documenting rationale and trade-offs for stakeholders.
+- Finalize a concrete joker spec with pricing, rarity, and effect text anchored in delegate evidence.
 - Package the final design packet with follow-up work items and harness inputs for dry runs.
 
 ## Inputs
-- Design brief describing gameplay goal, target deck archetype, or joker concept.
+- Design motivation, inspiration snippet, or an empty brief from stakeholders.
 - Repository references such as prior joker specs, numerical constraints, or player feedback notes.
 
 ## Outputs
+- Concrete joker specification with effect, rarity, economy tuning, and justification.
 - Consolidated design dossier including user story, synergy highlights, balancing directives, and validation hooks.
 - Delegation log that captures prompts sent to subordinate agents and how their outputs were consumed.
 - Open questions or risks that require additional research or future automation.
@@ -28,11 +30,17 @@ Delivers the dossier to production-focused teams (e.g., implementation or QA) an
 
 ## Prompt & Schema Crosswalk
 - Ensure every directive for subordinate usage is mirrored by `delegationLog` entries in the schema.
-- Require the dossier sections (mission recap, synergy plan, balance plan, validation plan) that map to `designSummary`, `synergyPlan`, `balancePlan`, and `validationHooks` fields.
+- Require the dossier sections (mission recap, synergy plan, balance plan, validation plan) that map to `designSummary`, `synergyPlan`, `balancePlan`, `validationHooks`, and `jokerSpec` fields.
 - Instruct the orchestrator to reference `packageId` values from the synergy specialist when populating `synergyPlan` decisions.
 - Explicitly mention risk tracking in the prompt so the `openRisks` array is always considered.
+
+## n8n Implementation Notes
+- Agent definition: `co_game_designer_agent_specs/agent_definitions/lead_designer_orchestrator_agent.json`.
+- `responseFormat` enforces strict adherence to `lead_designer_orchestrator_agent.json`.
+- `delegateAgents` field mirrors runtime calls to synergy and balance specialists for orchestration tooling.
 
 ## Manual Test Notes
 1. Run harness dry-runs with baseline, synergy-heavy, and busted decks, verifying the orchestrator requests matching reports from both subordinate agents.
 2. Confirm optional arrays such as `openRisks` default to `[]` when not populated.
 3. Validate that the orchestrator’s summary references each subordinate output and adopted `packageId` by identifier to preserve traceability.
+4. Ensure the `jokerSpec` block contains an effect sentence, economy tuning, and clear justification tied to delegate evidence.

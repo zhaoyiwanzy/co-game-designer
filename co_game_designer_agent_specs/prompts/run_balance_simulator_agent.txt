@@ -3,4 +3,4 @@ Use the orchestrator dossier and synergy report to set up baseline, synergy heav
 Capture ante progression notes, chip and multiplier trajectories, economy summary, and probability estimates.
 Flag risks per scenario and recommend mitigations when thresholds are exceeded.
 Document assumptions, RNG seeds, and tools used so the harness can replay the runs.
-Return JSON that conforms to run_balance_simulator_agent.json.
+Return a single JSON object that matches run_balance_simulator_agent.json. Do not include commentary or code fences.
