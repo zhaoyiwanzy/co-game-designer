@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Creativity Generator Agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "divergentAxes": {
+      "default": [],
+      "description": "Short labels describing how the idea seeds explore different directions.",
+      "examples": [
+        [
+          "Economy risk-reward",
+          "Discard loop disruption",
+          "Endless scaling cap"
+        ]
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "ideaSeeds": {
+      "default": [],
+      "description": "Concept seeds ready for downstream analysis.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "conceptPitch": {
+            "description": "One-paragraph pitch explaining the core gameplay hook.",
+            "examples": [
+              "Reward late-hand discards by caching unused mult for the boss blind."
+            ],
+            "type": "string"
+          },
+          "expectedPlaystyle": {
+            "description": "How the player will pilot the deck when this joker is active.",
+            "examples": [
+              "Aggressive discard cycling with selective hand banking."
+            ],
+            "type": "string"
+          },
+          "handoffNotes": {
+            "description": "Instructions or questions for downstream specialists.",
+            "examples": [
+              "Check balance impact if mult cache scales into endless."
+            ],
+            "type": "string"
+          },
+          "ideaId": {
+            "description": "Stable identifier used across the design workflow.",
+            "examples": [
+              "IDEA-01"
+            ],
+            "type": "string"
+          },
+          "noveltyHook": {
+            "description": "What makes this concept distinct from existing jokers.",
+            "examples": [
+              "Creates a delayed scoring window tied to discard restraint."
+            ],
+            "type": "string"
+          },
+          "primaryMechanics": {
+            "default": [],
+            "description": "Key mechanics or triggers leveraged by the concept.",
+            "examples": [
+              [
+                "discard",
+                "boss blind",
+                "mult cache"
+              ]
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "referenceJokers": {
+            "default": [],
+            "description": "Existing jokers or effects serving as inspiration or contrast.",
+            "examples": [
+              [
+                "Gros Michel",
+                "Banner"
+              ]
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "riskFlags": {
+            "default": [],
+            "description": "Potential risks or unknowns to investigate.",
+            "examples": [
+              [
+                "Mult cache might stack with Gros Michel for runaway scoring"
+              ]
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "targetRarity": {
+            "description": "Suggested rarity to match power level and availability.",
+            "enum": [
+              "common",
+              "uncommon",
+              "rare",
+              "legendary"
+            ],
+            "examples": [
+              "rare"
+            ],
+            "type": "string"
+          },
+          "title": {
+            "description": "Working name for the concept seed.",
+            "examples": [
+              "Cache King"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "conceptPitch",
+          "expectedPlaystyle",
+          "handoffNotes",
+          "ideaId",
+          "noveltyHook",
+          "primaryMechanics",
+          "referenceJokers",
+          "riskFlags",
+          "targetRarity",
+          "title"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "ideationSummary": {
+      "description": "Narrative summary of the opportunity space and recommended focus.",
+      "examples": [
+        "Discard control has openings for delayed mult payouts without breaking ante pacing."
+      ],
+      "type": "string"
+    },
+    "inspirationSources": {
+      "default": [],
+      "description": "Artifacts, research, or existing jokers referenced during ideation.",
+      "examples": [
+        [
+          {
+            "description": "Banner highlights discard reward patterns relevant to Cache King.",
+            "link": "co_game_designer_agent_specs/all_jokers.md#22",
+            "sourceId": "joker-banner",
+            "type": "joker"
+          }
+        ]
+      ],
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "description": "Why the source matters for this concept.",
+            "examples": [
+              "Week 31 metagame notes show discard decks underperforming."
+            ],
+            "type": "string"
+          },
+          "link": {
+            "description": "Optional path or URL for deeper reference.",
+            "examples": [
+              "experiments/discard_meta/week31.md"
+            ],
+            "type": "string"
+          },
+          "sourceId": {
+            "description": "Unique identifier for the source.",
+            "examples": [
+              "joker-banner"
+            ],
+            "type": "string"
+          },
+          "type": {
+            "description": "Category of the source such as joker, research, or anecdote.",
+            "examples": [
+              "joker"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "sourceId",
+          "type"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "openQuestions": {
+      "default": [],
+      "description": "Clarifications or decisions required before moving forward.",
+      "examples": [
+        [
+          "Confirm if endless scaling is allowed for discard archetypes."
+        ]
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "divergentAxes",
+    "ideaSeeds",
+    "ideationSummary",
+    "inspirationSources",
+    "openQuestions"
+  ]
+}

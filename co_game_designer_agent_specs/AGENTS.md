@@ -2,6 +2,7 @@
 
 ## Project Structure & Module Organization
 Treat `co_scientist_agent_specs/` as the reference pattern and mirror its layout inside `co_game_designer_agent_specs/`. Keep architecture notes in `architecture/` (one Markdown per agent, e.g., `architecture/joker_synergist.md`), prompts in `prompts/`, schemas in `schemas/`, and optional combo guidance in `playbooks/`. Park experimental assets such as mock cards or stat tables in `/experiments` outside the specs tree to avoid clutter.
+The shared n8n orchestration workflow lives at `co_game_designer_agent_specs/co-designer-workflow.json`; keep this file current as wiring changes.
 
 ## Architecture & Authoring Workflow
 Update the architecture doc first to capture the agent mission, downstream handoff, and manual test notes. Write prompts in imperative, second-person voice with lines ≤120 characters and uppercase tool identifiers like `BALATRO_SYNERGY_LOOKUP`. Define schemas with two-space indentation, sorted property keys, descriptive camelCase fields (e.g., `expectedMultiplier`), and include sample values with validation rules. Crosswalk the prompt and schema so every output field is described in both before moving on.

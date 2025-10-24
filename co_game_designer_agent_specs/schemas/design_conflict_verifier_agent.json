@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Design Conflict Verifier Agent Output",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "blockedItems": {
+      "default": [],
+      "description": "Identifiers for concepts or spec elements that cannot advance without changes.",
+      "examples": [
+        [
+          "IDEA-01",
+          "jokerSpec"
+        ]
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "conflictFindings": {
+      "default": [],
+      "description": "Detailed conflicts discovered during verification.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "conflictType": {
+            "description": "Category of the conflict encountered.",
+            "enum": [
+              "rules",
+              "economy",
+              "balance",
+              "ux",
+              "technical"
+            ],
+            "examples": [
+              "rules"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "Narrative explanation of the conflict.",
+            "examples": [
+              "Effect duplicates Banner and stacks with Gros Michel for runaway discards."
+            ],
+            "type": "string"
+          },
+          "findingId": {
+            "description": "Stable identifier for the finding.",
+            "examples": [
+              "conflict-rules-01"
+            ],
+            "type": "string"
+          },
+          "impactedSystems": {
+            "default": [],
+            "description": "Systems or mechanics affected by the issue.",
+            "examples": [
+              [
+                "discard economy",
+                "boss blind scaling"
+              ]
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resolutionRecommendation": {
+            "description": "Proposed mitigation or follow-up action.",
+            "examples": [
+              "Limit discard bonus to once per blind or move to legendary rarity."
+            ],
+            "type": "string"
+          },
+          "severity": {
+            "description": "Relative severity of the conflict.",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "examples": [
+              "high"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "description": "Current disposition of the finding.",
+            "enum": [
+              "blocked",
+              "mitigated",
+              "monitor"
+            ],
+            "examples": [
+              "blocked"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "conflictType",
+          "description",
+          "findingId",
+          "impactedSystems",
+          "resolutionRecommendation",
+          "severity",
+          "status"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "policyChecklist": {
+      "default": [],
+      "description": "Standard checks covering rules, economy, rarity, and UX guarantees.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "checkId": {
+            "description": "Identifier for the checklist item.",
+            "examples": [
+              "score-math"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "What the checklist item validates.",
+            "examples": [
+              "Score multipliers stay within ante 8 caps."
+            ],
+            "type": "string"
+          },
+          "notes": {
+            "description": "Supporting evidence or reasoning for the status.",
+            "examples": [
+              "Simulator confirms multiplier stays under 25 at ante 6."
+            ],
+            "type": "string"
+          },
+          "status": {
+            "description": "Outcome of the checklist evaluation.",
+            "enum": [
+              "pass",
+              "fail",
+              "attention"
+            ],
+            "examples": [
+              "attention"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "checkId",
+          "description",
+          "notes",
+          "status"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "validatedAspects": {
+      "default": [],
+      "description": "Elements of the design confirmed safe to advance.",
+      "examples": [
+        [
+          {
+            "aspectId": "economy-price",
+            "description": "Shop price aligns with rarity benchmarks.",
+            "notes": "Matches rare joker baseline plus 2 for scaling risk."
+          }
+        ]
+      ],
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "aspectId": {
+            "description": "Identifier for the validated aspect.",
+            "examples": [
+              "economy-price"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "description": "Summary of what passed verification.",
+            "examples": [
+              "Effect respects discard limit per blind."
+            ],
+            "type": "string"
+          },
+          "notes": {
+            "description": "Supporting rationale or evidence.",
+            "examples": [
+              "Synergy sim shows no infinite loop when paired with Banner."
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "aspectId",
+          "description",
+          "notes"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "validationNotes": {
+      "default": [],
+      "description": "Additional context or references gathered during verification.",
+      "examples": [
+        [
+          "Cross-checked against Joker #22 Banner for discard overlap."
+        ]
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "verificationSummary": {
+      "description": "Top-level verdict on whether the design may proceed.",
+      "examples": [
+        "Blocked pending rarity increase and discard trigger cap."
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "blockedItems",
+    "conflictFindings",
+    "policyChecklist",
+    "validatedAspects",
+    "validationNotes",
+    "verificationSummary"
+  ]
+}

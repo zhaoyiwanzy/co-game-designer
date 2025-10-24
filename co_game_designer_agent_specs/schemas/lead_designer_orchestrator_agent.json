@@ -47,6 +47,97 @@
       ],
       "type": "object"
     },
+    "conceptPlan": {
+      "description": "How the orchestrator curates idea seeds from the creativity generator.",
+      "properties": {
+        "divergentAxes": {
+          "default": [],
+          "description": "Axes from the generator output that informed selection decisions.",
+          "examples": [
+            [
+              "Discard tempo",
+              "Economy burst",
+              "Scaling restraint"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notes": {
+          "description": "Narrative summary of how ideation output was applied.",
+          "examples": [
+            "Adopted discard tempo seed; parking endless scaling due to balance risk."
+          ],
+          "type": "string"
+        },
+        "selectedIdeas": {
+          "default": [],
+          "description": "Decisions made on individual idea seeds.",
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "decision": {
+                "description": "Disposition for the idea seed.",
+                "enum": [
+                  "adopt",
+                  "iterate",
+                  "drop"
+                ],
+                "examples": [
+                  "adopt"
+                ],
+                "type": "string"
+              },
+              "delegateReference": {
+                "description": "Identifier or path referring to the generator output.",
+                "examples": [
+                  "creativity_report#IDEA-01"
+                ],
+                "type": "string"
+              },
+              "ideaId": {
+                "description": "Idea identifier supplied by the creativity generator.",
+                "examples": [
+                  "IDEA-01"
+                ],
+                "type": "string"
+              },
+              "rationale": {
+                "description": "Reasoning behind the decision and downstream implications.",
+                "examples": [
+                  "Adopt to reward discard tempo; loop balance with Banner risk noted."
+                ],
+                "type": "string"
+              },
+              "title": {
+                "description": "Idea seed title for readability.",
+                "examples": [
+                  "Cache King"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "decision",
+              "delegateReference",
+              "ideaId",
+              "rationale",
+              "title"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "divergentAxes",
+        "notes",
+        "selectedIdeas"
+      ],
+      "type": "object"
+    },
     "delegationLog": {
       "default": [],
       "description": "Chronological log of subordinate agent calls and how outputs were used.",
@@ -404,15 +495,84 @@
         "nextSteps"
       ],
       "type": "object"
+    },
+    "verificationPlan": {
+      "description": "Summary of the verification pass and resulting follow-up actions.",
+      "properties": {
+        "blockedItems": {
+          "default": [],
+          "description": "Identifiers from the verifier that remain blocked.",
+          "examples": [
+            [
+              "IDEA-02",
+              "jokerSpec"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "followUpActions": {
+          "default": [],
+          "description": "Actions assigned in response to verifier findings.",
+          "examples": [
+            [
+              "Revise discard trigger to once per blind",
+              "Re-run balance sim after rarity update"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "verifierReference": {
+          "description": "Link or identifier of the verifier output for traceability.",
+          "examples": [
+            "verification_report#CONF-01"
+          ],
+          "type": "string"
+        },
+        "verifierStatus": {
+          "description": "Overall verdict from the verification agent.",
+          "enum": [
+            "approved",
+            "changesRequested",
+            "blocked"
+          ],
+          "examples": [
+            "changesRequested"
+          ],
+          "type": "string"
+        },
+        "verifierSummary": {
+          "description": "Narrative recap of the verification outcome.",
+          "examples": [
+            "Blocked pending discard trigger cap and rarity bump."
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "blockedItems",
+        "followUpActions",
+        "verifierReference",
+        "verifierStatus",
+        "verifierSummary"
+      ],
+      "type": "object"
     }
   },
   "required": [
     "balancePlan",
+    "conceptPlan",
     "delegationLog",
     "designSummary",
     "jokerSpec",
     "openRisks",
     "synergyPlan",
-    "validationHooks"
+    "validationHooks",
+    "verificationPlan"
   ]
 }
