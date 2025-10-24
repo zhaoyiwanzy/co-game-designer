@@ -31,6 +31,13 @@ Delivers the dossier to production-focused teams (e.g., implementation or QA) an
 - Calls `design_conflict_verifier_agent` to block conflicting mechanics and populate verification follow-ups.
 - Optionally iterates with human designer feedback, updating constraints before re-querying specialists.
 
+## Workflow Representation
+- `co_game_designer_agent_specs/workflows/co_designer_workflow_manifest.json` enumerates the orchestrator, delegate tools, and trigger nodes.
+- Each agent entry declares the prompt path, schema path, model tuning, and downstream edges so updates stay version-controlled.
+- The manifest feeds `scripts/export_n8n_workflow.py`, which composes the deployable `co-designer-workflow.json`.
+- Regenerate the workflow json after manifest edits to keep the repository and the n8n deployment in sync.
+- Document dry-run notes and handoff expectations here whenever delegate ordering or data contracts change.
+
 ## Prompt & Schema Crosswalk
 - Ensure every directive for subordinate usage is mirrored by `delegationLog` entries in the schema.
 - Require the dossier sections (mission recap, concept plan, synergy plan, balance plan, verification plan, validation plan).

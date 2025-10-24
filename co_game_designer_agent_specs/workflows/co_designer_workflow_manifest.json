@@ -1,0 +1,100 @@
+{
+  "workflow": {
+    "id": "co-designer",
+    "name": "co-designer",
+    "description": "Lead designer orchestration workflow for Balatro joker development.",
+    "n8n": {
+      "id": "04jxiWVQXJocxEVU",
+      "versionId": "3d6b1665-0714-47cc-8ece-b02bc6e9e133",
+      "instanceId": "d5d9170e32fb6d69210f48d56786d762236eefabfcbee76ba1ba6fdab2d8c102"
+    }
+  },
+  "trigger": {
+    "type": "chat",
+    "name": "When chat message received",
+    "webhookId": "fb0dfe98-3201-4faf-81a2-61606c5e6207",
+    "options": {
+      "allowFileUploads": true
+    }
+  },
+  "credentials": {
+    "openAiApi": {
+      "id": "1lkBcOr7FVmY5bn6",
+      "name": "OpenAi account"
+    }
+  },
+  "agents": [
+    {
+      "id": "lead_designer_orchestrator_agent",
+      "type": "orchestrator",
+      "agentDefinition": "co_game_designer_agent_specs/agent_definitions/lead_designer_orchestrator_agent.json",
+      "promptPath": "co_game_designer_agent_specs/prompts/lead_designer_orchestrator_agent.txt",
+      "schemaPath": "co_game_designer_agent_specs/schemas/lead_designer_orchestrator_agent.json",
+      "languageModel": {
+        "provider": "openai",
+        "name": "gpt-5",
+        "reasoningEffort": "high",
+        "timeoutMs": 300000
+      },
+      "inputTemplate": "=Design request:\\n\\n{{ $json.chatInput}}\\n",
+      "delegateOrder": [
+        "creativity_generator_agent",
+        "joker_synergy_specialist_agent",
+        "run_balance_simulator_agent",
+        "design_conflict_verifier_agent"
+      ]
+    },
+    {
+      "id": "creativity_generator_agent",
+      "type": "tool",
+      "agentDefinition": "co_game_designer_agent_specs/agent_definitions/creativity_generator_agent.json",
+      "promptPath": "co_game_designer_agent_specs/prompts/creativity_generator_agent.txt",
+      "schemaPath": "co_game_designer_agent_specs/schemas/creativity_generator_agent.json",
+      "languageModel": {
+        "provider": "openai",
+        "name": "gpt-5",
+        "reasoningEffort": "medium",
+        "timeoutMs": 300000
+      }
+    },
+    {
+      "id": "joker_synergy_specialist_agent",
+      "type": "tool",
+      "agentDefinition": "co_game_designer_agent_specs/agent_definitions/joker_synergy_specialist_agent.json",
+      "promptPath": "co_game_designer_agent_specs/prompts/joker_synergy_specialist_agent.txt",
+      "schemaPath": "co_game_designer_agent_specs/schemas/joker_synergy_specialist_agent.json",
+      "languageModel": {
+        "provider": "openai",
+        "name": "gpt-5",
+        "reasoningEffort": "medium",
+        "timeoutMs": 300000,
+        "maxTokens": -1
+      }
+    },
+    {
+      "id": "run_balance_simulator_agent",
+      "type": "tool",
+      "agentDefinition": "co_game_designer_agent_specs/agent_definitions/run_balance_simulator_agent.json",
+      "promptPath": "co_game_designer_agent_specs/prompts/run_balance_simulator_agent.txt",
+      "schemaPath": "co_game_designer_agent_specs/schemas/run_balance_simulator_agent.json",
+      "languageModel": {
+        "provider": "openai",
+        "name": "gpt-5",
+        "timeoutMs": 300000
+      }
+    },
+    {
+      "id": "design_conflict_verifier_agent",
+      "type": "tool",
+      "agentDefinition": "co_game_designer_agent_specs/agent_definitions/design_conflict_verifier_agent.json",
+      "promptPath": "co_game_designer_agent_specs/prompts/design_conflict_verifier_agent.txt",
+      "schemaPath": "co_game_designer_agent_specs/schemas/design_conflict_verifier_agent.json",
+      "languageModel": {
+        "provider": "openai",
+        "name": "gpt-5",
+        "reasoningEffort": "high",
+        "timeoutMs": 300000
+      }
+    }
+  ]
+}
