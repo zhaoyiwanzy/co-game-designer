@@ -1,6 +1,606 @@
 You verify Balatro joker designs for conflicts with core rules and existing mechanics.
 Review the orchestrator dossier plus synergy and simulator evidence when provided.
-Consult co_game_designer_agent_specs/all_jokers.md to flag duplicates or oppressive overlaps.
+Use this Balatro Joker catalog to flag duplicates or oppressive overlaps:
+1 Joker: +4 Mult
+         cost $2 | rarity Common | availability Available from start
+         type +m | trigger Indep.
+
+2 Greedy Joker: Played cards with ♦ give +3 Mult when scored
+                cost $5 | rarity Common | availability Available from start
+                type +m | trigger On Scored
+
+3 Lusty Joker: Played cards with ♥ give +3 Mult when scored
+               cost $5 | rarity Common | availability Available from start
+               type +m | trigger On Scored
+
+4 Wrathful Joker: Played cards with ♠ give +3 Mult when scored
+                  cost $5 | rarity Common | availability Available from start
+                  type +m | trigger On Scored
+
+5 Gluttonous Joker: Played cards with ♣ give +3 Mult when scored
+                    cost $5 | rarity Common | availability Available from start
+                    type +m | trigger On Scored
+
+6 Jolly Joker: +8 Mult if played hand contains a Pair
+               cost $3 | rarity Common | availability Available from start
+               type +m | trigger Indep.
+
+7 Zany Joker: +12 Mult if played hand contains a Three of a Kind
+              cost $4 | rarity Common | availability Available from start
+              type +m | trigger Indep.
+
+8 Mad Joker: +10 Mult if played hand contains a Two Pair
+             cost $4 | rarity Common | availability Available from start
+             type +m | trigger Indep.
+
+9 Crazy Joker: +12 Mult if played hand contains a Straight
+               cost $4 | rarity Common | availability Available from start
+               type +m | trigger Indep.
+
+10 Droll Joker: +10 Mult if played hand contains a Flush
+                cost $4 | rarity Common | availability Available from start
+                type +m | trigger Indep.
+
+11 Sly Joker: +50 Chips if played hand contains a Pair
+              cost $3 | rarity Common | availability Available from start
+              type +c | trigger Indep.
+
+12 Wily Joker: +100 Chips if played hand contains a Three of a Kind
+               cost $4 | rarity Common | availability Available from start
+               type +c | trigger Indep.
+
+13 Clever Joker: +80 Chips if played hand contains a Two Pair
+                 cost $4 | rarity Common | availability Available from start
+                 type +c | trigger Indep.
+
+14 Devious Joker: +100 Chips if played hand contains a Straight
+                  cost $4 | rarity Common | availability Available from start
+                  type +c | trigger Indep.
+
+15 Crafty Joker: +80 Chips if played hand contains a Flush
+                 cost $4 | rarity Common | availability Available from start
+                 type +c | trigger Indep.
+
+16 Half Joker: +20 Mult if played hand contains 3 or fewer cards
+               cost $5 | rarity Common | availability Available from start
+               type +m | trigger Indep.
+
+17 Joker Stencil: X1 Mult for each empty Joker slot
+                  cost $8 | rarity Uncommon | availability Available from start
+                  type Xm | trigger Indep.
+
+18 Four Fingers: All Flushes and Straights can be made with 4 cards
+                 cost $7 | rarity Uncommon | availability Available from start
+                 type !! | trigger N/A
+
+19 Mime: Retrigger all card held in hand abilities
+         cost $5 | rarity Uncommon | availability Available from start
+         type ... | trigger On Held
+
+20 Credit Card: Go up to -$20 in debt
+                cost $1 | rarity Common | availability Available from start
+                type +$ | trigger N/A
+
+21 Ceremonial Dagger: When Blind is selected, destroy Joker to the right and permanently add double its sell value to
+                      Mult
+                      cost $6 | rarity Uncommon | availability Available from start
+                      type +m | trigger Indep.
+
+22 Banner: +30 Chips for each remaining discard
+           cost $5 | rarity Common | availability Available from start
+           type +c | trigger Indep.
+
+23 Mystic Summit: +15 Mult when 0 discards remaining
+                  cost $5 | rarity Common | availability Available from start
+                  type +m | trigger Indep.
+
+24 Marble Joker: Adds one Stone card to the deck when Blind is selected
+                 cost $6 | rarity Uncommon | availability Available from start
+                 type !! | trigger On Blind Select
+
+25 Loyalty Card: X4 Mult every 6 hands played
+                 cost $5 | rarity Uncommon | availability Available from start
+                 type Xm | trigger Indep.
+
+26 8 Ball: 1 in 4 chance for each played 8 to create a Tarot card when scored
+           cost $5 | rarity Common | availability Available from start
+           type !! | trigger On Scored
+
+27 Misprint: +0–23 Mult
+             cost $4 | rarity Common | availability Available from start
+             type +m | trigger Indep.
+
+28 Dusk: Retrigger all played cards in final hand of the round
+         cost $5 | rarity Uncommon | availability Available from start
+         type ... | trigger On Scored
+
+29 Raised Fist: Adds double the rank of lowest ranked card held in hand to Mult
+                cost $5 | rarity Common | availability Available from start
+                type +m | trigger On Held
+
+30 Chaos the Clown: 1 free Reroll per shop
+                    cost $4 | rarity Common | availability Available from start
+                    type !! | trigger N/A
+
+31 Fibonacci: Each played Ace, 2, 3, 5, or 8 gives +8 Mult when scored
+              cost $8 | rarity Uncommon | availability Available from start
+              type +m | trigger On Scored
+
+32 Steel Joker: Gives X0.2 Mult for each Steel Card in your full deck
+                cost $7 | rarity Uncommon | availability Available from start
+                type Xm | trigger Indep.
+
+33 Scary Face: Played face cards give +30 Chips when scored
+               cost $4 | rarity Common | availability Available from start
+               type +c | trigger On Scored
+
+34 Abstract Joker: +3 Mult for each Joker card
+                   cost $4 | rarity Common | availability Available from start
+                   type +m | trigger Indep.
+
+35 Delayed Gratification: Earn $2 per discard if no discards are used by end of the round
+                          cost $4 | rarity Common | availability Available from start
+                          type +$ | trigger N/A
+
+36 Hack: Retrigger each played 2, 3, 4, or 5
+         cost $6 | rarity Uncommon | availability Available from start
+         type ... | trigger On Scored
+
+37 Pareidolia: All cards are considered face cards
+               cost $5 | rarity Uncommon | availability Available from start
+               type !! | trigger N/A
+
+38 Gros Michel: +15 Mult, 1 in 6 chance to be destroyed at end of round
+                cost $5 | rarity Common | availability Available from start
+                type +m | trigger Indep.
+
+39 Even Steven: Played cards with even rank give +4 Mult when scored
+                cost $4 | rarity Common | availability Available from start
+                type +m | trigger On Scored
+
+40 Odd Todd: Played cards with odd rank give +31 Chips when scored
+             cost $4 | rarity Common | availability Available from start
+             type +c | trigger On Scored
+
+41 Scholar: Played Aces give +20 Chips and +4 Mult when scored
+            cost $4 | rarity Common | availability Available from start
+            type ++ | trigger On Scored
+
+42 Business Card: Played face cards have 1 in 2 chance to give $2 when scored
+                  cost $4 | rarity Common | availability Available from start
+                  type +$ | trigger On Scored
+
+43 Supernova: Adds number of times poker hand has been played this run to Mult
+              cost $5 | rarity Common | availability Available from start
+              type +m | trigger Indep.
+
+44 Ride the Bus: Gains +1 Mult per consecutive hand played without a scoring face card
+                 cost $6 | rarity Common | availability Available from start
+                 type +m | trigger Mixed
+
+45 Space Joker: 1 in 4 chance to upgrade level of played poker hand
+                cost $5 | rarity Uncommon | availability Available from start
+                type !! | trigger On Played
+
+46 Egg: Gains $3 of sell value at end of round
+        cost $4 | rarity Common | availability Available from start
+        type +$ | trigger N/A
+
+47 Burglar: When Blind is selected, gain +3 Hands and lose all discards
+            cost $6 | rarity Uncommon | availability Available from start
+            type !! | trigger On Blind Select
+
+48 Blackboard: X3 Mult if all cards held in hand are ♠ or ♣
+               cost $6 | rarity Uncommon | availability Available from start
+               type Xm | trigger Indep.
+
+49 Runner: Gains +15 Chips if played hand contains a Straight
+           cost $5 | rarity Common | availability Available from start
+           type +c | trigger Mixed
+
+50 Ice Cream: +100 Chips, -5 Chips for every hand played
+              cost $5 | rarity Common | availability Available from start
+              type +c | trigger Indep.
+
+51 DNA: If first hand of round has only 1 card, add a permanent copy to deck and draw it to hand
+        cost $8 | rarity Rare | availability Available from start
+        type !! | trigger On Played
+
+52 Splash: Every played card counts in scoring
+           cost $3 | rarity Common | availability Available from start
+           type !! | trigger N/A
+
+53 Blue Joker: +2 Chips for each remaining card in deck
+               cost $5 | rarity Common | availability Available from start
+               type +c | trigger Indep.
+
+54 Sixth Sense: If first hand of round is a single 6, destroy it and create a Spectral card
+                cost $6 | rarity Uncommon | availability Available from start
+                type !! | trigger N/A
+
+55 Constellation: Gains X0.1 Mult every time a Planet card is used
+                  cost $6 | rarity Uncommon | availability Available from start
+                  type Xm | trigger Indep.
+
+56 Hiker: Every played card permanently gains +5 Chips when scored
+          cost $5 | rarity Uncommon | availability Available from start
+          type +c | trigger On Scored
+
+57 Faceless Joker: Earn $5 if 3+ face cards are discarded at once
+                   cost $4 | rarity Common | availability Available from start
+                   type +$ | trigger On Discard
+
+58 Green Joker: +1 Mult per hand played, -1 Mult per discard
+                cost $4 | rarity Common | availability Available from start
+                type +m | trigger Mixed
+
+59 Superposition: Create a Tarot card if poker hand contains an Ace and a Straight
+                  cost $4 | rarity Common | availability Available from start
+                  type !! | trigger Indep.
+
+60 To Do List: Earn $4 if poker hand is a listed type, changes each round
+               cost $4 | rarity Common | availability Available from start
+               type +$ | trigger On Played
+
+61 Cavendish: X3 Mult, 1 in 1000 chance to be destroyed at end of round
+              cost $4 | rarity Common | availability Available from start
+              type Xm | trigger Indep.
+
+62 Card Sharp: X3 Mult if played poker hand was already played this round
+               cost $6 | rarity Uncommon | availability Available from start
+               type Xm | trigger Indep.
+
+63 Red Card: Gains +3 Mult when any Booster Pack is skipped
+             cost $5 | rarity Common | availability Available from start
+             type +m | trigger Indep.
+
+64 Madness: Gain X0.5 Mult when Small/Big Blind selected, destroy random Joker
+            cost $7 | rarity Uncommon | availability Available from start
+            type Xm | trigger Indep.
+
+65 Square Joker: Gains +4 Chips if played hand has exactly 4 cards
+                 cost $4 | rarity Common | availability Available from start
+                 type +c | trigger Mixed
+
+66 Séance: If poker hand is a Straight Flush, create a random Spectral card
+           cost $6 | rarity Uncommon | availability Available from start
+           type !! | trigger Indep.
+
+67 Riff-Raff: When Blind is selected, create 2 Common Jokers
+              cost $6 | rarity Common | availability Available from start
+              type !! | trigger On Blind Select
+
+68 Vampire: Gains X0.1 Mult per scoring Enhanced card played, removes enhancement
+            cost $7 | rarity Uncommon | availability Available from start
+            type Xm | trigger Mixed
+
+69 Shortcut: Allows Straights with gaps of 1 rank (e.g. 10–8–6–5–3)
+             cost $7 | rarity Uncommon | availability Available from start
+             type !! | trigger N/A
+
+70 Hologram: Gains X0.25 Mult every time a card is added to deck
+             cost $7 | rarity Uncommon | availability Available from start
+             type Xm | trigger Indep.
+
+71 Vagabond: Create a Tarot card if hand is played with $4 or less
+             cost $8 | rarity Rare | availability Available from start
+             type !! | trigger Indep.
+
+72 Baron: Each King held in hand gives X1.5 Mult
+          cost $8 | rarity Rare | availability Available from start
+          type Xm | trigger On Held
+
+73 Cloud 9: Earn $1 for each 9 in full deck at end of round
+            cost $7 | rarity Uncommon | availability Available from start
+            type +$ | trigger N/A
+
+74 Rocket: Earn $1 at end of round, +$2 when Boss Blind defeated
+           cost $6 | rarity Uncommon | availability Available from start
+           type +$ | trigger N/A
+
+75 Obelisk: Gains X0.2 Mult per consecutive hand without using most-played hand
+            cost $8 | rarity Rare | availability Available from start
+            type Xm | trigger Mixed
+
+76 Midas Mask: All played face cards become Gold cards when scored
+               cost $7 | rarity Uncommon | availability Available from start
+               type !! | trigger On Played
+
+77 Luchador: Sell this card to disable current Boss Blind
+             cost $5 | rarity Uncommon | availability Available from start
+             type !! | trigger N/A
+
+78 Photograph: First played face card gives X2 Mult when scored
+               cost $5 | rarity Common | availability Available from start
+               type Xm | trigger On Scored
+
+79 Gift Card: Add $1 of sell value to all Jokers and Consumables each round
+              cost $6 | rarity Uncommon | availability Available from start
+              type +$ | trigger N/A
+
+80 Turtle Bean: +5 hand size, reduces by 1 each round
+                cost $6 | rarity Uncommon | availability Available from start
+                type !! | trigger N/A
+
+81 Erosion: +4 Mult for each card below deck’s starting size
+            cost $6 | rarity Uncommon | availability Available from start
+            type +m | trigger Indep.
+
+82 Reserved Parking: Each face card held has 1 in 2 chance to give $1
+                     cost $6 | rarity Common | availability Available from start
+                     type +$ | trigger On Held
+
+83 Mail-In Rebate: Earn $5 for each discarded rank, changes each round
+                   cost $4 | rarity Common | availability Available from start
+                   type +$ | trigger On Discard
+
+84 To the Moon: Earn +$1 interest for every $5 owned at end of round
+                cost $5 | rarity Uncommon | availability Available from start
+                type +$ | trigger N/A
+
+85 Hallucination: 1 in 2 chance to create Tarot card when any Booster Pack opened
+                  cost $4 | rarity Common | availability Available from start
+                  type !! | trigger N/A
+
+86 Fortune Teller: +1 Mult per Tarot card used this run
+                   cost $6 | rarity Common | availability Available from start
+                   type +m | trigger Indep.
+
+87 Juggler: +1 hand size
+            cost $4 | rarity Common | availability Available from start
+            type !! | trigger N/A
+
+88 Drunkard: +1 discard per round
+             cost $4 | rarity Common | availability Available from start
+             type !! | trigger N/A
+
+89 Stone Joker: +25 Chips for each Stone Card in deck
+                cost $6 | rarity Uncommon | availability Available from start
+                type +c | trigger Indep.
+
+90 Golden Joker: Earn $4 at end of round
+                 cost $6 | rarity Common | availability Available from start
+                 type +$ | trigger N/A
+
+91 Lucky Cat: Gains X0.25 Mult per successful Lucky card trigger
+              cost $6 | rarity Uncommon | availability Available from start
+              type Xm | trigger Mixed
+
+92 Baseball Card: Uncommon Jokers each give X1.5 Mult
+                  cost $8 | rarity Rare | availability Available from start
+                  type Xm | trigger On Other Jokers
+
+93 Bull: +2 Chips per $1 owned
+         cost $6 | rarity Uncommon | availability Available from start
+         type +c | trigger Indep.
+
+94 Diet Cola: Sell this card to create a free Double Tag
+              cost $6 | rarity Uncommon | availability Available from start
+              type !! | trigger N/A
+
+95 Trading Card: If first discard of round has only 1 card, destroy it and earn $3
+                 cost $6 | rarity Uncommon | availability Available from start
+                 type +$ | trigger On Discard
+
+96 Flash Card: Gains +2 Mult per shop reroll
+               cost $5 | rarity Uncommon | availability Available from start
+               type +m | trigger Indep.
+
+97 Popcorn: +20 Mult, -4 Mult per round played
+            cost $5 | rarity Common | availability Available from start
+            type +m | trigger Indep.
+
+98 Spare Trousers: Gains +2 Mult if hand contains a Two Pair
+                   cost $6 | rarity Uncommon | availability Available from start
+                   type +m | trigger Mixed
+
+99 Ancient Joker: Each played card with suit gives X1.5 Mult, suit changes each round
+                  cost $8 | rarity Rare | availability Available from start
+                  type Xm | trigger On Scored
+
+100 Ramen: X2 Mult, loses X0.01 Mult per card discarded
+           cost $6 | rarity Uncommon | availability Available from start
+           type Xm | trigger Mixed
+
+101 Walkie Talkie: Each played 10 or 4 gives +10 Chips and +4 Mult when scored
+                   cost $4 | rarity Common | availability Available from start
+                   type ++ | trigger On Scored
+
+102 Seltzer: Retrigger all cards played for the next 10 hands
+             cost $6 | rarity Uncommon | availability Available from start
+             type ... | trigger On Scored
+
+103 Castle: Gains +3 Chips per discarded suit, suit changes every round
+            cost $6 | rarity Uncommon | availability Available from start
+            type +c | trigger Mixed
+
+104 Smiley Face: Played face cards give +5 Mult when scored
+                 cost $4 | rarity Common | availability Available from start
+                 type +m | trigger On Scored
+
+105 Campfire: Gains X0.25 Mult for each card sold, resets when Boss Blind defeated
+              cost $9 | rarity Rare | availability Available from start
+              type Xm | trigger Indep.
+
+106 Golden Ticket: Played Gold cards earn $4 when scored
+                   cost $5 | rarity Common | availability Play 5-card hand with only Gold cards
+                   type +$ | trigger On Scored
+
+107 Mr. Bones: Prevents Death if chips ≥25% of requirement, then self-destructs
+               cost $5 | rarity Uncommon | availability Lose 5 runs
+               type !! | trigger N/A
+
+108 Acrobat: X3 Mult on final hand of round
+             cost $6 | rarity Uncommon | availability Play 200 hands
+             type Xm | trigger Indep.
+
+109 Sock and Buskin: Retrigger all played face cards
+                     cost $6 | rarity Uncommon | availability Play 300 face cards total
+                     type ... | trigger On Scored
+
+110 Swashbuckler: Adds sell value of all other Jokers to Mult
+                  cost $4 | rarity Common | availability Sell 20 Joker cards
+                  type +m | trigger Indep.
+
+111 Troubadour: +2 hand size, −1 hand per round
+                cost $6 | rarity Uncommon | availability Win 5 rounds using only 1 hand
+                type !! | trigger N/A
+
+112 Certificate: Adds random card with random seal to hand each round
+                 cost $6 | rarity Uncommon | availability Have Gold card with Gold Seal
+                 type !! | trigger N/A
+
+113 Smeared Joker: ♥ and ♦ count as same suit; ♠ and ♣ count as same suit
+                   cost $7 | rarity Uncommon | availability Have ≥3 Wild cards
+                   type !! | trigger N/A
+
+114 Throwback: X0.25 Mult for each Blind skipped this run
+               cost $6 | rarity Uncommon | availability Continue saved run
+               type Xm | trigger Indep.
+
+115 Hanging Chad: Retrigger first played card used in scoring 2×
+                  cost $4 | rarity Common | availability Beat Boss Blind with High Card
+                  type ... | trigger On Scored
+
+116 Rough Gem: Played ♦ cards earn $1 when scored
+               cost $7 | rarity Uncommon | availability Have ≥30 ♦ cards in deck
+               type +$ | trigger On Scored
+
+117 Bloodstone: 1 in 2 chance for ♥ cards to give X1.5 Mult when scored
+                cost $7 | rarity Uncommon | availability Have ≥30 ♥ cards in deck
+                type Xm | trigger On Scored
+
+118 Arrowhead: Played ♠ cards give +50 Chips when scored
+               cost $7 | rarity Uncommon | availability Have ≥30 ♠ cards in deck
+               type +c | trigger On Scored
+
+119 Onyx Agate: Played ♣ cards give +7 Mult when scored
+                cost $7 | rarity Uncommon | availability Have ≥30 ♣ cards in deck
+                type +m | trigger On Scored
+
+120 Glass Joker: Gains X0.75 Mult for every destroyed Glass Card
+                 cost $6 | rarity Uncommon | availability Have ≥5 Glass Cards in deck
+                 type Xm | trigger Indep.
+
+121 Showman: Joker, Tarot, Planet, and Spectral cards may appear multiple times
+             cost $5 | rarity Uncommon | availability Reach Ante 4
+             type !! | trigger N/A
+
+122 Flower Pot: X3 Mult if hand has all four suits
+                cost $6 | rarity Uncommon | availability Reach Ante 8
+                type Xm | trigger Indep.
+
+123 Blueprint: Copies ability of Joker to the right
+               cost $10 | rarity Rare | availability Win a run
+               type !! | trigger N/A
+
+124 Wee Joker: Gains +8 Chips when each played 2 is scored
+               cost $8 | rarity Rare | availability Win a run in ≤18 rounds
+               type +c | trigger Mixed
+
+125 Merry Andy: +3 discards per round, −1 hand size
+                cost $7 | rarity Uncommon | availability Win a run in ≤12 rounds
+                type !! | trigger N/A
+
+126 Oops! All 6s: Doubles all listed probabilities (e.g., 1/3 → 2/3)
+                  cost $4 | rarity Uncommon | availability Earn ≥10,000 chips in one hand
+                  type !! | trigger N/A
+
+127 The Idol: Each played [rank][suit] gives X2 Mult when scored (changes each round)
+              cost $6 | rarity Uncommon | availability Earn ≥1,000,000 chips in one hand
+              type Xm | trigger On Scored
+
+128 Seeing Double: X2 Mult if hand has a scoring ♣ and another suit
+                   cost $6 | rarity Uncommon | availability Play a hand with four 7♣
+                   type Xm | trigger Indep.
+
+129 Matador: Earn $8 if hand triggers Boss Blind ability
+             cost $7 | rarity Uncommon | availability Defeat Boss Blind in 1 hand w/o discards
+             type +$ | trigger Indep.
+
+130 Hit the Road: Gains X0.5 Mult for every Jack discarded this round
+                  cost $8 | rarity Rare | availability Discard 5 Jacks at once
+                  type Xm | trigger Mixed
+
+131 The Duo: X2 Mult if hand contains a Pair
+             cost $8 | rarity Rare | availability Win a run without playing a Pair
+             type Xm | trigger Indep.
+
+132 The Trio: X3 Mult if hand contains a Three of a Kind
+              cost $8 | rarity Rare | availability Win a run without playing a Three of a Kind
+              type Xm | trigger Indep.
+
+133 The Family: X4 Mult if hand contains a Four of a Kind
+                cost $8 | rarity Rare | availability Win a run without playing a Four of a Kind
+                type Xm | trigger Indep.
+
+134 The Order: X3 Mult if hand contains a Straight
+               cost $8 | rarity Rare | availability Win a run without playing a Straight
+               type Xm | trigger Indep.
+
+135 The Tribe: X2 Mult if hand contains a Flush
+               cost $8 | rarity Rare | availability Win a run without playing a Flush
+               type Xm | trigger Indep.
+
+136 Stuntman: +250 Chips, −2 hand size
+              cost $7 | rarity Rare | availability Earn ≥100M chips in a single hand
+              type +c | trigger Indep.
+
+137 Invisible Joker: After 2 rounds, sell to duplicate a random Joker (removes Negative)
+                     cost $8 | rarity Rare | availability Win a game with ≤4 Jokers
+                     type !! | trigger N/A
+
+138 Brainstorm: Copies ability of leftmost Joker
+                cost $10 | rarity Rare | availability Discard a Royal Flush
+                type !! | trigger N/A
+
+139 Satellite: Earn $1 per unique Planet card used this run
+               cost $6 | rarity Uncommon | availability Have ≥$400
+               type +$ | trigger N/A
+
+140 Shoot the Moon: Each Queen held gives +13 Mult
+                    cost $5 | rarity Common | availability Play every ♥ card in one round
+                    type +m | trigger On Held
+
+141 Driver’s License: X3 Mult if ≥16 Enhanced cards in deck
+                      cost $7 | rarity Rare | availability Enhance 16 cards in deck
+                      type Xm | trigger Indep.
+
+142 Cartomancer: Create a Tarot card when Blind is selected
+                 cost $6 | rarity Uncommon | availability Discover every Tarot Card
+                 type !! | trigger On Blind Select
+
+143 Astronomer: All Planet cards and Celestial Packs are free
+                cost $8 | rarity Uncommon | availability Discover all Planet Cards
+                type !! | trigger N/A
+
+144 Burnt Joker: Upgrade level of first discarded poker hand each round
+                 cost $8 | rarity Rare | availability Sell 50 cards
+                 type !! | trigger On Discard
+
+145 Bootstraps: +2 Mult for every $5 owned
+                cost $7 | rarity Uncommon | availability Have ≥2 Polychrome Jokers
+                type +m | trigger Indep.
+
+146 Canio: Gains X1 Mult when a face card is destroyed
+           cost — | rarity Legendary | availability Found via Soul card
+           type Xm | trigger Mixed
+
+147 Triboulet: Played Kings and Queens each give X2 Mult when scored
+               cost — | rarity Legendary | availability Found via Soul card
+               type Xm | trigger On Scored
+
+148 Yorick: Gains X1 Mult every 23 cards discarded
+            cost — | rarity Legendary | availability Found via Soul card
+            type Xm | trigger Mixed
+
+149 Chicot: Disables every Boss Blind effect
+            cost — | rarity Legendary | availability Found via Soul card
+            type !! | trigger On Blind Select
+
+150 Perkeo: Creates Negative copy of 1 random consumable at end of shop
+            cost — | rarity Legendary | availability Found via Soul card
+            type !! | trigger N/A
 Summarize an overall verificationSummary and capture supporting validationNotes as needed.
 Populate policyChecklist entries with checkId, description, status, and notes; statuses are pass, fail, or attention.
 List conflictFindings with findingId, conflictType, description, impactedSystems, and severity details.
