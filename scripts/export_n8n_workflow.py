@@ -8,6 +8,24 @@ from typing import Dict, List, Any
 
 UUID_NAMESPACE = uuid.uuid5(uuid.NAMESPACE_URL, "co-game-designer/auto-deployment")
 
+TRIGGER_DEFAULTS = {
+    "chat": {
+        "name": "When chat message received",
+        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+        "typeVersion": 1.3,
+    },
+    "manual": {
+        "name": "When clicking execute workflow",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+    },
+    "webhook": {
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 1,
+    },
+}
+
 
 def load_json(path: Path) -> Any:
     with path.open("r", encoding="utf-8") as handle:
@@ -77,6 +95,16 @@ def main() -> None:
 
     manifest = load_json(manifest_path)
     agents: List[Dict[str, Any]] = manifest.get("agents", [])
+    trigger_manifests = manifest.get("triggers")
+    if trigger_manifests is None:
+        legacy_trigger = manifest.get("trigger")
+        trigger_manifests = [legacy_trigger] if legacy_trigger else None
+    if not trigger_manifests:
+        trigger_manifests = [
+            {
+                "type": "chat",
+            }
+        ]
 
     orchestrator = next(
         (agent for agent in agents if agent.get("type") == "orchestrator"), None
@@ -295,26 +323,64 @@ def main() -> None:
         "ai_languageModel",
     )
 
-    # Trigger node
-    trigger_manifest = manifest.get("trigger", {})
-    trigger_node = {
-        "id": uuid_for("chat_trigger"),
-        "name": trigger_manifest.get("name", "When chat message received"),
-        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-        "typeVersion": 1.3,
-        "position": positions["trigger"],
-        "parameters": {"options": trigger_manifest.get("options", {})},
-        "webhookId": trigger_manifest.get("webhookId"),
-    }
-    nodes.append(trigger_node)
+    # Trigger nodes
+    trigger_positions = [
+        [0, -index * 240] for index in range(len(trigger_manifests))
+    ] or [[0, 0]]
 
-    add_connection(
-        connections,
-        trigger_node["name"],
-        "main",
-        orchestrator["id"],
-        "main",
-    )
+    for index, trigger_manifest in enumerate(trigger_manifests):
+        trigger_type = trigger_manifest.get("type", "chat")
+        defaults = TRIGGER_DEFAULTS.get(trigger_type)
+        if defaults is None:
+            raise ValueError(f"Unsupported trigger type: {trigger_type}")
+
+        node = {
+            "id": uuid_for(f"trigger::{trigger_type}::{index}"),
+            "name": trigger_manifest.get("name", defaults["name"]),
+            "type": trigger_manifest.get("nodeType", defaults["type"]),
+            "typeVersion": trigger_manifest.get(
+                "typeVersion", defaults["typeVersion"]
+            ),
+            "position": trigger_manifest.get(
+                "position", trigger_positions[index]
+            ),
+        }
+
+        parameters = trigger_manifest.get("parameters")
+        if parameters is None:
+            if trigger_type == "chat":
+                parameters = {"options": trigger_manifest.get("options", {})}
+            elif trigger_type == "manual":
+                parameters = trigger_manifest.get("options", {}) or {}
+            elif trigger_type == "webhook":
+                parameters = {
+                    "path": trigger_manifest.get("path", "co-designer"),
+                    "httpMethod": trigger_manifest.get("httpMethod", "POST"),
+                    "responseMode": trigger_manifest.get(
+                        "responseMode", "onReceived"
+                    ),
+                    "responseData": trigger_manifest.get(
+                        "responseData", "allEntries"
+                    ),
+                    "options": trigger_manifest.get("options", {}),
+                }
+            else:
+                parameters = {}
+
+        node["parameters"] = parameters
+
+        if trigger_manifest.get("webhookId"):
+            node["webhookId"] = trigger_manifest["webhookId"]
+
+        nodes.append(node)
+
+        add_connection(
+            connections,
+            node["name"],
+            "main",
+            orchestrator["id"],
+            "main",
+        )
 
     workflow_meta = manifest.get("workflow", {})
     n8n_meta = workflow_meta.get("n8n", {})

@@ -9,14 +9,22 @@
       "instanceId": "d5d9170e32fb6d69210f48d56786d762236eefabfcbee76ba1ba6fdab2d8c102"
     }
   },
-  "trigger": {
-    "type": "chat",
-    "name": "When chat message received",
-    "webhookId": "fb0dfe98-3201-4faf-81a2-61606c5e6207",
-    "options": {
-      "allowFileUploads": true
+  "triggers": [
+    {
+      "type": "manual",
+      "name": "When clicking execute workflow"
+    },
+    {
+      "type": "webhook",
+      "name": "Webhook",
+      "webhookId": "fb0dfe98-3201-4faf-81a2-61606c5e6207",
+      "path": "co-designer",
+      "httpMethod": "POST",
+      "responseMode": "onReceived",
+      "responseData": "allEntries",
+      "options": {}
     }
-  },
+  ],
   "credentials": {
     "openAiApi": {
       "id": "1lkBcOr7FVmY5bn6",

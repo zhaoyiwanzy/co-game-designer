@@ -296,18 +296,31 @@
       "waitBetweenTries": 100
     },
     {
-      "id": "259f3f8a-a706-5db9-a768-7e45f561ac23",
-      "name": "When chat message received",
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.3,
+      "id": "85b640b4-184b-5bd0-8208-e42c9fbcda9b",
+      "name": "When clicking execute workflow",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
       "position": [
         0,
         0
       ],
+      "parameters": {}
+    },
+    {
+      "id": "cb7b3452-b30b-5ca4-a25b-3c807ea32804",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -240
+      ],
       "parameters": {
-        "options": {
-          "allowFileUploads": true
-        }
+        "path": "co-designer",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "responseData": "allEntries",
+        "options": {}
       },
       "webhookId": "fb0dfe98-3201-4faf-81a2-61606c5e6207"
     }
@@ -467,7 +480,18 @@
         ]
       ]
     },
-    "When chat message received": {
+    "When clicking execute workflow": {
+      "main": [
+        [
+          {
+            "node": "lead_designer_orchestrator_agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
       "main": [
         [
           {
